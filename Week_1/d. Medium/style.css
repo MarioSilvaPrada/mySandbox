@@ -203,6 +203,20 @@ header {
   margin-top:20px;
 }
 
+.container__main__divisor p{
+  width:159px;
+  margin-left: 490px;
+  color: #03a87c;
+  font-size: 1.1em;
+  margin-top:40px;
+  margin-bottom: 40px;
+}
+
+.container__main__divisor p:hover{
+  color:green;
+  cursor: pointer;
+}
+
 /* END OF MAIN CONTAINER */
 
 /* ASIDE */
@@ -210,6 +224,7 @@ header {
 .container__main__aside {
   margin-left: 30px;
   width:328px;
+  color: 
 }
 
 
@@ -287,6 +302,7 @@ header {
   display: flex;
   background-color: #FAFAFA;
   justify-content: space-evenly;
+  margin-top: 20px;
   
 }
 
