@@ -1,0 +1,39 @@
+
+
+.container {
+    margin: 200px auto;
+    width:600px;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 4em;
+}
+
+.tic-tac-toe {
+    width:600px;
+    height: 600px;
+    display:grid;
+    grid-template-columns:200px 200px 200px;
+    grid-template-rows:200px 200px 200px;
+}
+
+.box2, .box8 {
+    width:200px;
+    height:200px;
+    border-right:3px solid black; 
+    border-left: 3px solid black; 
+}
+
+.box4, .box6 {
+    width:200px;
+    height:200px;
+    border-top:3px solid black; 
+    border-bottom: 3px solid black; 
+}
+
+.box5 {
+    width:200px;
+    height:200px;
+    border: 3px solid black; 
+}
