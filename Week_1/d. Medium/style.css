@@ -302,7 +302,7 @@ header {
   display: flex;
   background-color: #FAFAFA;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin-top: 2 0px;
   
 }
 
@@ -323,6 +323,26 @@ header {
 
 .container__main__aside_reading__content--text{
   width: 215px;
+}
+
+.container__main__aside__footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container__main__aside hr {
+  margin-top: 50px;
+  color:grey;
+}
+
+.container__main__aside__footer p {
+  margin-right:16px;
+  color:rgba(0,0,0,.54);
+  font-size:14px;
+}
+.container__main__aside__footer p:hover {
+  cursor:pointer;
+  text-decoration: underline;
 }
 
 /* END OF ASIDE */
