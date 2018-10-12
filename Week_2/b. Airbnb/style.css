@@ -1,0 +1,73 @@
+
+body{
+    margin:0;
+}
+
+.mainpicture{
+    display:flex;
+    flex-direction: column;
+}
+
+.mainpicture__header {
+    background: url("https://a0.muscache.com/4ea/air/r:w3100-h2074-sfit,e:fjpg-c80/pictures/0ffd8594-f123-43f0-85bb-7ef88c6f0624.jpg") center;
+    width:100%;
+    height: 100vh;
+    min-height: 650px;
+    background-size:cover;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+svg {
+    color:white;
+    font-size: 2.2em;
+    padding-left:26px;
+    padding-top:25px;
+}
+
+.mainpicture__header--nav{
+    display:flex;
+    height: 80px;
+    width:427px;
+    justify-content: space-evenly;
+}
+
+.mainpicture__header--nav--link {
+    align-self: center;
+    color: white;
+}
+
+.mainpicture__header--nav--link:hover {
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.mainpicture__form{
+    width:100%;
+    display:grid;
+    grid-template-columns: 441px 441px 441px;
+    grid-template-rows: 475px;
+}
+
+.mainpicture__form__position{
+    grid-column: 2/3;
+    border:2px solid white;
+    background: white;
+}
+
+.mainpicture__info{
+    color:white;
+    height: 92px;
+    width: 259px;
+    margin-bottom: 0;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mainpicture__info p {
+    
+}
+
+
