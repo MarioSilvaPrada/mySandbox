@@ -120,7 +120,7 @@ svg {
 .mainpicture__form__position--input input, select {
     height: 50px;
     border-radius: 5px;
-    border:1px solid grey;
+    border:1px solid #aaa;
     font-size: 17px;
     color:grey;
     padding-left:15px;
@@ -275,3 +275,32 @@ svg {
 .container__rate__grid--content--text h6, h4, span{
     margin:7px 0;
 }
+
+.container__rate__grid--content--text h6 {
+    text-transform: uppercase;
+}
+
+.container__rate__grid--content--text--rate{
+    color:rgb(0, 132, 137);
+    font-size: 11px;
+    margin-top:5px;
+    font-weight: bold;
+}
+
+.show-all {
+    color:rgb(0, 132, 137);
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.show-all svg{
+    width:10px;
+}
+
+.show-all:hover{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+
+
