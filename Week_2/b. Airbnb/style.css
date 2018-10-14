@@ -266,12 +266,14 @@ svg {
     font-weight: bold;
 }
 
-.container__recomendation--post--img h3 {
+.container__recomendation--post--img h4 {
     margin-bottom: 0;
 }
 
 .container__recomendation--post--img span {
     margin-bottom: 20px;
+    margin-top:5px;
+    font-size:15px;
 }
 
 .container__rate{
