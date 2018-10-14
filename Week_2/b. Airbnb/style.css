@@ -249,6 +249,31 @@ svg {
     cursor:pointer;
 }
 
+.container__recomendation--post{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__recomendation--post--img{
+    width:193px;
+    height: 241px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+.container__recomendation--post--img h3 {
+    margin-bottom: 0;
+}
+
+.container__recomendation--post--img span {
+    margin-bottom: 20px;
+}
+
 .container__rate{
     margin-top:40px;
 }
