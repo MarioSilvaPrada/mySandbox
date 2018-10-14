@@ -159,6 +159,7 @@ svg {
 
 .input--checkout input {
   border-radius: 0 5px 5px 0;
+  border-left:0;
 }
 
 .input--checkout{
@@ -304,5 +305,39 @@ svg {
     cursor:pointer;
 }
 
+
+/* Footer Container */
+
+.container__footer--title {
+    margin-bottom:15px;
+}
+
+.container__footer--title h2 {
+    margin:25px 0 7px;
+}
+
+.container__footer--posts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__footer--post {
+    width: 50%;
+    font-size: 17px;
+}
+
+.container__footer--post{
+    margin-top: 15px;
+}
+
+.container__footer--post h5{
+    margin: 12px 0 9px;
+}
+
+.container__footer--post img{
+    width:500px;
+    height: 318px;
+    border-radius: 3px; 
+}
 
 
