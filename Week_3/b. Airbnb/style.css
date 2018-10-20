@@ -475,6 +475,11 @@ svg {
         height: auto;
     }
 
+    .mobile-scroll {
+        display: -webkit-box;
+        overflow-x: overlay;
+    }
+
 }
 
 @media (max-width: 790px) {
