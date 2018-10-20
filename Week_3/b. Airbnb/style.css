@@ -60,10 +60,10 @@ svg {
     border-bottom:2px solid white;
 }
 
-.mainpicture__form{
+.mainpicture__form {
     width:100%;
     display:grid;
-    grid-template-columns: 441px 441px 441px 441px;
+    grid-template-columns: 1fr 441px 1fr 1fr;
     grid-template-rows: 475px;
 }
 
@@ -106,6 +106,16 @@ svg {
 .mainpicture__form__position h1 {
     margin-top: 25px;
 }
+
+.mainpicture--resize{
+    display: none;
+    color: white;
+}
+
+.container--resize {
+    display: none;
+}
+
 
 .mainpicture__form__position--input {
     display: flex;
@@ -370,5 +380,55 @@ svg {
     height: 318px;
     border-radius: 3px; 
 }
+
+
+@media (max-width:1130px) {
+    
+    .container {
+        width: 95%;
+    }
+    
+    .mainpicture {
+        height: 256px;
+        display: block;
+    }
+
+    .mainpicture__header {
+        height: 200px;;
+        min-height: 0;
+    }
+
+    .mainpicture__form {
+        display: none;
+    }
+
+    .mainpicture__info {
+        display: none;
+    }
+
+    .mainpicture__header--nav {
+        display: none;
+    }
+
+
+    .mainpicture--resize {
+        display: block;
+        width:90%;    
+        margin: 0 20px 20px 20px;
+        margin: auto;
+        overflow: hidden; 
+    }
+
+    .container--resize {
+        display: block;
+        width:100%;       
+    }
+
+    .mainpicture__form__position--input input[type="submit"] {
+        width: 100%;
+    }
+
+}
+
 
 
