@@ -457,6 +457,24 @@ svg {
         font-size:0.9em;
     }
 
+    .container__footer--posts {
+        min-width:765px;
+        
+    }
+
+    .container__footer {
+        overflow: hidden;
+    }
+
+    .container__footer--post:first-of-type {
+        margin-right: 15px;
+    }
+
+    .container__footer--post img {
+        width:100%;
+        height: auto;
+    }
+
 }
 
 @media (max-width: 790px) {
