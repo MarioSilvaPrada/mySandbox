@@ -224,7 +224,7 @@ svg {
 
 .container__introducing--img{
     height: 300px;
-    background: url("https://a0.muscache.com/4ea/air/v2/pictures/e36e06a9-f9a4-49a5-a94c-02134a8787c5.jpg?t=c:w1131-h343,r:w1131-h343-sfit,e:fjpg-c75") center;
+    background: url("https://a0.muscache.com/4ea/air/v2/pictures/e36e06a9-f9a4-49a5-a94c-02134a8787c5.jpg?t=c:w1131-h343,r:w1131-h343-sfit,e:fjpg-c75") center no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -428,7 +428,39 @@ svg {
         width: 100%;
     }
 
+    .container__recomendation {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .container__recomendation--post {
+        overflow: hidden;
+        width: 1032px;
+    }
+
 }
 
 
 
+@media (max-width: 740px) {
+    .container__explore--img {
+        flex-direction: column;
+        width:140px;
+        height: 135px;
+        min-width:140px;
+    }
+
+    .container__explore {
+        overflow: hidden;
+    }
+
+    .container__explore--img img {
+        width: 100%;
+    }
+
+    .container__explore--img h3 {
+        margin-top: 9px;
+        margin-left: 12px;
+        align-self: flex-start;
+    }
+}
