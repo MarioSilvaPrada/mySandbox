@@ -415,7 +415,7 @@ header {
 
   .header--nav {
     width:100%;
-    overflow:hidden;
+    overflow:overlay;
     white-space: nowrap; 
     
   }
@@ -583,6 +583,10 @@ header {
 
   .container__main__box__post__image img {
     width: 100%;
+  }
+
+  .container__main__featured{
+    overflow-x: overlay;
   }
 
 }
