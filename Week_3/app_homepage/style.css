@@ -1,4 +1,76 @@
+/* navbar */
 
-.my-nav {
+* {
+    margin:0;
+    padding:0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar {
     background-color: rgba(0,0,0,0.6);
+    height: 60px;
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.navbar__logo {
+    width:100%;
+    height: auto;
+    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2016/03/logo-pp.png") no-repeat center;
+    background-size: contain;
+}
+
+.navbar__menu {
+    width: 100px;
+    display: flex;
+}
+
+.navbar__menu i {
+    font-size: 1.7em;
+    color: white;
+    align-self: center;
+    margin-left: 10px;
+}
+
+/* container */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+}
+.container--post {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+    
+}
+
+.container--post span {
+    background: rgba(0,0,0,0.3);
+    font-size: 2em;
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.menus {
+    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2017/05/Hamburguer-500x370.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.stores {
+    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2016/05/Belem.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.order {
+    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2018/03/Header-sandes1.png") no-repeat center;
+    background-size: cover;
+}
+
+.map {
+    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2018/03/Header-pao.png") no-repeat center;
+    background-size: cover;
 }
