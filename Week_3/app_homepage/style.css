@@ -46,12 +46,16 @@
 .container--post {
     width:100%;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
     color: white;
 }
 
-.container--post span {
+.container--post .text {
+    display: none;
+}
+
+.container--post .title {
     background: rgba(0,0,0,0.3);
     font-size: 2em;
     width:100%;
@@ -69,6 +73,7 @@
 .menus {
     background: url("https://images.pexels.com/photos/254884/pexels-photo-254884.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center;
     background-size: cover;
+    display: flex;
 }
 
 .stores {
@@ -81,7 +86,7 @@
     background-size: cover;
 }
 
-.map {
+.campaign {
     background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2018/03/Header-pao.png") no-repeat center;
     background-size: cover;
 }
@@ -109,7 +114,7 @@
         margin-left: 50px;
     }
 
-    .container--post span {
+    .container--post .title {
         font-size: 4em;
     }
     
@@ -150,7 +155,7 @@
 
     .container {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 600px);
+        grid-template-rows: 300px repeat(5, 700px);
         grid-gap: 20px;
         grid-template-areas: 
         "intro "
@@ -163,8 +168,33 @@
         margin: auto;
     }
 
-    .container--post span {
-        display: none;
+    .container--post {
+        justify-content: flex-start;
+    }
+
+    .container--post .title {
+        display: unset;
+        align-self: flex-start;
+    }
+
+    .container--post .text {
+        align-self: center;
+        display: unset;
+        background: rgba(0,0,0,0.3);
+        width:100%;
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .text p {
+        width: 50%;
+        margin:auto;
+        line-height: 2em;
+        font-weight: bold;
+        color: white;
+        font-size: 1.5em;
     }
 
     .intro {
