@@ -67,7 +67,7 @@
 }
 
 .menus {
-    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2017/05/Hamburguer-500x370.jpg") no-repeat center;
+    background: url("https://images.pexels.com/photos/254884/pexels-photo-254884.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") no-repeat center;
     background-size: cover;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .order {
-    background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2018/03/Header-sandes1.png") no-repeat center;
+    background: url("https://images.pexels.com/photos/873653/pexels-photo-873653.jpeg?cs=srgb&dl=baked-goods-bread-cake-873653.jpg&fm=jpg") no-repeat center;
     background-size: cover;
 }
 
@@ -118,7 +118,7 @@
 @media (min-width: 1025px) {
 
     .navbar {
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr;
         background: url("https://www.apadariaportuguesa.pt/wp-content/uploads/2016/05/mosaico-opaco-small.png") repeat-x;
         height: 71px;
     }
@@ -149,23 +149,18 @@
     }
 
     .container {
-        grid-template-columns: 2fr 3fr;
-        grid-template-rows: repeat(200px, 4);
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 600px);
         grid-gap: 20px;
         grid-template-areas: 
-        "intro intro"
-        "menus menu-text"
-        "stores stores-text"
-        "order order-text"
-        "map map-text"
-        "wallet wallet-text";
-        width:90%;
+        "intro "
+        "menus"
+        "stores"
+        "order"
+        "campaign"
+        "wallet";
+        width:100%;
         margin: auto;
-    }
-
-    .container--post {
-        border-radius: 6px;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 
     .container--post span {
@@ -191,8 +186,8 @@
         grid-area: order;
     }
     
-    .map {
-        grid-area: map;
+    .campaign {
+        grid-area: campaign;
     }
 
     .wallet {
