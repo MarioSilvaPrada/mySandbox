@@ -31,6 +31,10 @@
     margin-left: 10px;
 }
 
+.nabar__menu__login {
+    display: none;
+}
+
 .tabs {
     display: none;
 }
@@ -132,8 +136,32 @@
         display: none;
     }
 
+    .navbar__menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+
     .navbar__menu i {
         display: none;
+    }
+
+    .nabar__menu__login {
+        display: flex;
+        color: white;
+        text-shadow: 2px 2px 4px grey;
+        font-weight: bold;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 250px;
+        font-size: 20px;
+        background: rgba(0,0,0,0.2);
+        border: 1px solid black;
+    }
+
+    .nabar__menu__login img {
+        width: 60px;
+        height: 60px;;
+        border-radius: 100%;
     }
 
     .tabs {
@@ -175,6 +203,7 @@
     .container--post .title {
         display: unset;
         align-self: flex-start;
+        text-decoration: underline;
     }
 
     .container--post .text {
