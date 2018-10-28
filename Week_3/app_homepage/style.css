@@ -61,7 +61,7 @@
 
 .modal-options p {
     text-align: center;
-    width: 80%;
+    width: 100%;
     color: white;
     font-size: 1.3em;
     margin-top: 40%;
@@ -153,6 +153,10 @@
     .navbar__menu i {
         font-size: 3em;
         margin-left: 50px;
+    }
+
+    .modal-options p {
+        font-size: 2em;
     }
 
     .container--post .title {
