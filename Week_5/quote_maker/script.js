@@ -2,8 +2,8 @@ let userName = prompt('What is your name?');
 let answer = prompt('Do you want to leave a quote for humanity to reflect upon such wisdom?');
 
 if (answer.toLowerCase() === 'yes') {
-
-    let wordLength = prompt('How many words has your quote?'); 
+    let number = prompt('How many words?')
+    alert('Tell me your quote word by word'); 
     let quote = prompt('Tell me your quote word by word');
 
     alert(`Your quote is: ${quote} - ${userName}`)
