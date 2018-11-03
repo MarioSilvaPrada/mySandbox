@@ -1,5 +1,6 @@
 
 let numbArr = [];
+
 for (let i = 0; i < 3; i++) {
     let numbers = parseFloat(prompt('input numbers'));
     if(numbArr.length == 0 ) {
@@ -17,6 +18,7 @@ for (let i = 0; i < 3; i++) {
     } else if (numbers == numbArr[0] || numbers == numbArr[1]) {
         numbArr.push(numbers);
     }
+
 }
 
 alert (`The order is ${numbArr.join(', ')}`);
