@@ -15,4 +15,16 @@ for (num of numberSplit) {
 }
 
 console.log(numObj);
-// fazer for in
+
+// let string = `List of numbers: \n`;
+alert('List of numbers:')
+
+for (let prop in numObj) {
+      
+    // string += `${prop}: ${numObj[prop]} times \n`;
+    alert(`${prop}: ${numObj[prop]} times`)
+}
+
+
+
+
