@@ -16,24 +16,13 @@ for (char of userInput) {
             let utf = String.fromCharCode(alphabetFirst[index2].charCodeAt(0));
             output.push(utf);
         }
+    } else {
+        output.push(false)
     }
 }
 
-if (output.length > 0) {
+if (output.indexOf(false) === -1) {
     alert(output.join(''));
 } else {
     alert('We only accept capital letters A - Z');
 }
-
-
-
-
-// if (userInput !== userInput.toUpperCase() || typeof userInput !== 'string' || userInput.indexOf(' ') >= 0 || userInput.indexOf('!') >= 0) {
-//     alert('We only accept capital letters A - Z');
-// } else {
-
-
-
-//     alert(output.join(''));
-// }
-
