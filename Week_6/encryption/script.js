@@ -2,14 +2,11 @@ let alphabetFirst = 'ABCDEFGHIJKLM';
 let alphabetSecond = 'NOPQRSTUVWXYZ';
 
 let userInput = prompt('User Input');
+let output = [];
 
-if (userInput !== userInput.toUpperCase() || typeof userInput !== 'string' || userInput.indexOf(' ') >= 0 || userInput.indexOf('!') >= 0) {
-    alert('We only accept capital letters A - Z');
-} else {
-    let split = userInput.split('');
-    let output = [];
+for (char of userInput) {
+    if (char.charCodeAt(0) > 64 && char.charCodeAt(0) < 91) {
 
-    for (char of split) {
         if (alphabetFirst.indexOf(char) !== -1) {
             let index = alphabetFirst.indexOf(char);
             let utf = String.fromCharCode(alphabetSecond[index].charCodeAt(0));
@@ -20,7 +17,23 @@ if (userInput !== userInput.toUpperCase() || typeof userInput !== 'string' || us
             output.push(utf);
         }
     }
-
-    alert(output.join(''));
 }
+
+if (output.length > 0) {
+    alert(output.join(''));
+} else {
+    alert('We only accept capital letters A - Z');
+}
+
+
+
+
+// if (userInput !== userInput.toUpperCase() || typeof userInput !== 'string' || userInput.indexOf(' ') >= 0 || userInput.indexOf('!') >= 0) {
+//     alert('We only accept capital letters A - Z');
+// } else {
+
+
+
+//     alert(output.join(''));
+// }
 
