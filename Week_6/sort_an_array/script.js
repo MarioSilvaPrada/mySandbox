@@ -34,6 +34,7 @@ let mainArr = [];
 
     } else {
         alert('You did not insert any person in the list');
+        alert('Goodbye');
     }
     
     
