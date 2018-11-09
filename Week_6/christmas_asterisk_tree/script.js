@@ -1,19 +1,19 @@
-let width = parseInt(prompt('Christmas Tree width')) / 2 + 1;
+let width = parseInt(prompt('width input'));
 
-let treeRow = '';
+let middle = (width + 1) / 2;
 
-for (i = 1; i <= width; i++) {
+let row = '';
+console.log(middle);
 
-  for (j = i; j <= width; j++) {
-    treeRow += " ";
+for (let i = 0; i < middle; i++) {
+  for (let j = 1; j <= width; j++) {
+    if (j >= (middle - i) && j <= (middle + i)) {
+      row += "*";
+    } else {
+      row += " ";
+    }
   }
-  for (j = 1; j <= (2 * i - 1); j++) {
-    treeRow += '*';
-  }
-  treeRow += '\n';
+
+  alert(row);
+  row = '';
 }
-
-var node = document.createElement("pre");
-var textnode = document.createTextNode(treeRow);
-node.appendChild(textnode);
-document.querySelector("body").appendChild(node);

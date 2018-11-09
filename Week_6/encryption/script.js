@@ -4,7 +4,7 @@ let alphabetSecond = 'NOPQRSTUVWXYZ';
 let userInput = prompt('User Input');
 let output = [];
 
-for (char of userInput) {
+for (let char of userInput) {
     if (char.charCodeAt(0) > 64 && char.charCodeAt(0) < 91) {
 
         if (alphabetFirst.indexOf(char) !== -1) {
