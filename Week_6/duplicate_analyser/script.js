@@ -21,7 +21,3 @@ alert('List of numbers:')
 for (let prop in numObj) {
     alert(`${prop}: ${numObj[prop]} times`)
 }
-
-
-
-
