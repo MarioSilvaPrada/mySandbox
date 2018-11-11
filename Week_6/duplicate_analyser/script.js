@@ -14,8 +14,6 @@ for (num of numberSplit) {
     }
 }
 
-console.log(numObj);
-
 alert('List of numbers:')
 
 for (let prop in numObj) {

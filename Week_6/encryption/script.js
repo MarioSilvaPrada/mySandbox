@@ -7,7 +7,7 @@ let output = [];
 for (let char of userInput) {
     if (char.charCodeAt(0) > 64 && char.charCodeAt(0) < 91) {
 
-        if (alphabetFirst.indexOf(char) !== -1) {
+        if (alphabetFirst.includes(char)) {
             let index = alphabetFirst.indexOf(char);
             let utf = String.fromCharCode(alphabetSecond[index].charCodeAt(0));
             output.push(utf);

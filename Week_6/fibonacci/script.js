@@ -13,7 +13,5 @@ if (answer === 'yes') {
         lastValue = value;
         value = fib;
         num--;
-        
     }
 }
-
