@@ -9,14 +9,10 @@ function greet(age, gender, name) {
 
 }
 
-function greetAnAdultMale(name) {
-  greet.apply(null, [45, 'male', name]);
-} 
+let greetAnAdultMale = greet.bind(null, 45, 'male');
+
+let greetAYoungster = greet.bind(null, 20)
 
 greetAnAdultMale('Carlos');
 
-function greetAYoungster(name, gender) {
-  greet.apply(null, [20, gender, name]);
-} 
-
-greetAYoungster('Vera', 'female');
+greetAYoungster('female', 'Vera');
