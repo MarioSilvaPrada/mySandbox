@@ -13,6 +13,6 @@ let greetAnAdultMale = greet.bind(null, 45, 'male');
 
 let greetAYoungster = greet.bind(null, 20)
 
-greetAnAdultMale('Carlos');
+greetAnAdultMale('Tiago');
 
 greetAYoungster('female', 'Vera');
