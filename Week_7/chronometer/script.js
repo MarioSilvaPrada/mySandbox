@@ -6,10 +6,10 @@ Number.prototype.pad = function (size) {
 
 
 class Chronometer {
-    constructor(seconds, minutes, hours) {
-        this.seconds = seconds;
-        this.minutes = minutes;
+    constructor(hours, minutes, seconds) {
         this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
     }
 
 
@@ -34,16 +34,14 @@ class Chronometer {
     }
 
     getTime() {
-
+        console.log(`${(this.hours).pad(2)}:${(this.minutes.pad(2))}:${(this.seconds).pad(2)}`)
     }
 }
 
-let time = new Chronometer(0, 0, 0);
+let time = new Chronometer(0, 1, 15);
 
-setTimeout(() => {
-    time.addTime(6000)
-},15000)
 
 time.startTime()
+
 
 
