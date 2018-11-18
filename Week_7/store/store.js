@@ -5,7 +5,9 @@ class Customer {
     // this.debts = debts;
   }
 
-  buy() { }
+  buy() { 
+    
+  }
 
   createDebt(amount, interestLoan) {
     balance += amount;
@@ -119,7 +121,7 @@ if (customer.length > 0 && productArr.length > 0) {
       if (productSelected instanceof ProductVIP && !(customerSelected instanceof VIPcustomer)) {
         alert("You are not on the VIP list, sorry");
 
-      } else if (productSelected['units'] < 0) {
+      } else if (productSelected['units'] <= 0) {
 
         alert(`We ran out of ${productSelected['name']}, sorry`);
 
@@ -130,6 +132,8 @@ if (customer.length > 0 && productArr.length > 0) {
         } 
         else {
           alert('Thank you for your purchase, bye');
+          productSelected['units'] --;
+          console.log(productArr);
         }
 
       }
