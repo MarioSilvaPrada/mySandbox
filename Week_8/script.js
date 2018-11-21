@@ -1,17 +1,21 @@
 function askUser() {
     let userInput = prompt('User input!');
+    let database = [];
 
     while (userInput !== 'exit') {
 
-        let database = [];
+        
 
         function User(name, email, password) {
             this.name = name;
             this.email = email;
             this.password = password;
+            this.isLogin = false;
+            this.followers = 0;
+            this.following = 0;
         }
 
-        const databaseValidation = (mailUser) => {
+        const isEmailValid = (mailUser) => {
             let validEmail = false;
             for (db of database) {
                 if (db['email'] === mailUser) {
@@ -46,6 +50,26 @@ function askUser() {
             }
         }
 
+        const createUser = (name, email, password)=> {
+            database.push(new User(name, email, password));
+        }
+
+        const getUser = (mail) => {
+            for (db of database) {
+                if (db['email'] === mail) {
+                    return db;
+                }
+            }
+        }
+
+        const isUserLogIn = (mail) => {
+            for (db of database) {
+                if (db['email'] === mail) {
+                    return db['isLogin']
+                }
+            }
+        }
+
         switch (userInput) {
 
             case 'log in':
@@ -53,15 +77,17 @@ function askUser() {
             let userEmail = prompt('Email input');
             let userPass = prompt('Password input');
 
-            if (databaseValidation(userEmail)) {
+            if (isEmailValid(userEmail)) {
                 if (checkUserPassword(userEmail, userPass)) {
                     let userName = null;
                     for (db of database) {
                         if (db['email'] === userEmail) {
                             userName = db['name'];
+                            db['isLogin'] = true; //turn user login true
                         }
                     }
                     alert(`Welcome ${userName}`);
+                    console.log(database);
                 }
                 else {
                     alert('The password is incorrect')
@@ -93,28 +119,50 @@ function askUser() {
                     mailValidation();
                 }
 
-                while (databaseValidation(email) && email !== 'exit*') {
+                while (isEmailValid(email) && email !== 'exit*') {
                     alert('Sorry, that email is already taken');
                     email = prompt('Insert email');
-                    databaseValidation();
+                    isEmailValid();
                 }
 
                 //    PONTO 4 EM FALTA
 
 
-
-                database.push(new User(name, email, password));
+                if (email !== 'exit*') {
+                    createUser(name,email,password)
+                }
+                
+                console.dir(database);
                 alert('Thank you for your registration, welcome!');
+                
 
                 break;
             case 'exit':
+                
                 alert('You left the program, bye');
                 break;
             case 'search':
-                // code here;
+                let searchEmail = prompt('Search email');
+
+                if (isEmailValid(searchEmail)) {
+                    let data = getUser(searchEmail)
+                    alert(data['name']);
+                    alert(data['email']);
+                    alert(data['followers']);
+                    alert(data['following']);
+
+                }
+                else {
+                    alert('We have no results for that query')
+                }
+
+                // FALTA PONTO 4
+
                 break;
             case 'log out':
-                // code here;
+                
+
+
                 break;
             case 'follow':
             // code here;
