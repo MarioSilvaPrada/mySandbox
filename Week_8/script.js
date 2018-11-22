@@ -1,4 +1,4 @@
-function askUser() {
+
     let userInput = prompt('User input!');
     let database = [];
     let mailLogIn = null;
@@ -88,15 +88,15 @@ function askUser() {
                                 mailLogIn = userEmail; // set email to Logged in
                             }
                         }
-                        alert(`Welcome ${userName}`);
+                        alert(`Welcome ${userName} \n`);
                         console.log(database);
                     }
                     else {
-                        alert('The password is incorrect')
+                        alert('The password is incorrect\n')
                     }
                 }
                 else {
-                    alert('We don\'t have that account')
+                    alert('We don\'t have that account\n')
                 }
 
                 break;
@@ -116,18 +116,20 @@ function askUser() {
                 }
 
                 while (!mailValidation() && email !== 'exit*') {
-                    alert('Insert valid email');
+                    alert('Insert valid email\n');
                     email = prompt('Insert email');
                     mailValidation();
                 }
 
                 while (isEmailValid(email) && email !== 'exit*') {
-                    alert('Sorry, that email is already taken');
+                    alert('Sorry, that email is already taken\n');
                     email = prompt('Insert email');
                     isEmailValid();
                 }
 
-                //    PONTO 4 EM FALTA
+                if (isUserLogIn(email)) {
+                    alert('log out first before you create a new account\n');
+                }
 
 
                 if (email !== 'exit*') {
@@ -135,7 +137,7 @@ function askUser() {
                 }
 
                 console.dir(database);
-                alert('Thank you for your registration, welcome!');
+                alert('Thank you for your registration, welcome!\n');
 
 
                 break;
@@ -152,35 +154,37 @@ function askUser() {
 
                     }
                     else {
-                        alert('We have no results for that query')
+                        alert('We have no results for that query\n')
                     }
                 }
                 else {
-                    alert('Sorry, you have to be logged in to use that functionality')
+                    alert('Sorry, you have to be logged in to use that functionality\n')
                 }
 
                 break;
             case 'log out':
                 if (isUserLogIn(mailLogIn)) {
-                    alert('You logged out, see you later');
+                    alert('You logged out, see you later\n');
                 }
                 else {
-                    alert('Sorry, you have to be logged in to use that functionality')
+                    alert('Sorry, you have to be logged in to use that functionality\n')
                 }
 
 
                 break;
             case 'follow':
-            // code here;
+            
+                let userFollow = prompt('Insert email');
+
+                if (isEmailValid(userFollow)) {
+
+                }
+
             default:
-                alert('we don\'t have that option');
+                alert('we don\'t have that option\n');
         }
 
         userInput = prompt('User input!');
     }
 
     alert('You left the program, bye');
-
-}
-
-askUser()
