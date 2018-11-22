@@ -1,10 +1,11 @@
 function askUser() {
     let userInput = prompt('User input!');
     let database = [];
+    let mailLogIn = null;
 
     while (userInput !== 'exit') {
 
-        
+
 
         function User(name, email, password) {
             this.name = name;
@@ -50,7 +51,7 @@ function askUser() {
             }
         }
 
-        const createUser = (name, email, password)=> {
+        const createUser = (name, email, password) => {
             database.push(new User(name, email, password));
         }
 
@@ -73,29 +74,30 @@ function askUser() {
         switch (userInput) {
 
             case 'log in':
-                
-            let userEmail = prompt('Email input');
-            let userPass = prompt('Password input');
 
-            if (isEmailValid(userEmail)) {
-                if (checkUserPassword(userEmail, userPass)) {
-                    let userName = null;
-                    for (db of database) {
-                        if (db['email'] === userEmail) {
-                            userName = db['name'];
-                            db['isLogin'] = true; //turn user login true
+                let userEmail = prompt('Email input');
+                let userPass = prompt('Password input');
+
+                if (isEmailValid(userEmail)) {
+                    if (checkUserPassword(userEmail, userPass)) {
+                        let userName = null;
+                        for (db of database) {
+                            if (db['email'] === userEmail) {
+                                userName = db['name'];
+                                db['isLogin'] = true; //turn user login true
+                                mailLogIn = userEmail; // set email to Logged in
+                            }
                         }
+                        alert(`Welcome ${userName}`);
+                        console.log(database);
                     }
-                    alert(`Welcome ${userName}`);
-                    console.log(database);
+                    else {
+                        alert('The password is incorrect')
+                    }
                 }
                 else {
-                    alert('The password is incorrect')
+                    alert('We don\'t have that account')
                 }
-            }
-            else {
-                alert('We don\'t have that account')
-            }
 
                 break;
             case 'sign up':
@@ -129,38 +131,42 @@ function askUser() {
 
 
                 if (email !== 'exit*') {
-                    createUser(name,email,password)
+                    createUser(name, email, password)
                 }
-                
+
                 console.dir(database);
                 alert('Thank you for your registration, welcome!');
-                
 
-                break;
-            case 'exit':
-                
-                alert('You left the program, bye');
+
                 break;
             case 'search':
                 let searchEmail = prompt('Search email');
 
-                if (isEmailValid(searchEmail)) {
-                    let data = getUser(searchEmail)
-                    alert(data['name']);
-                    alert(data['email']);
-                    alert(data['followers']);
-                    alert(data['following']);
+                if (isUserLogIn(mailLogIn)) {
+                    if (isEmailValid(searchEmail)) {
+                        let data = getUser(searchEmail)
+                        alert(data['name']);
+                        alert(data['email']);
+                        alert('Followers: ' + data['followers']);
+                        alert('Following: ' + data['following']);
 
+                    }
+                    else {
+                        alert('We have no results for that query')
+                    }
                 }
                 else {
-                    alert('We have no results for that query')
+                    alert('Sorry, you have to be logged in to use that functionality')
                 }
-
-                // FALTA PONTO 4
 
                 break;
             case 'log out':
-                
+                if (isUserLogIn(mailLogIn)) {
+                    alert('You logged out, see you later');
+                }
+                else {
+                    alert('Sorry, you have to be logged in to use that functionality')
+                }
 
 
                 break;
@@ -172,6 +178,8 @@ function askUser() {
 
         userInput = prompt('User input!');
     }
+
+    alert('You left the program, bye');
 
 }
 
