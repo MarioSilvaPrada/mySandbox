@@ -53,74 +53,73 @@ while (userInput !== 'exit') {
         }
     }
 
-    //checks if user is login  TRUE or FALSE
-    const isUserLogIn = (mail) => {
-        for (db of database) {
-            if (db['email'] === mail) {
-                return db['isLogin']
-            }
-        }
-    }
 
     switch (userInput) {
 
         case 'log in':
 
-            let userEmail = prompt('Email input').trim();
-            let userPass = prompt('Password input');
 
-            if (!hasUser(userEmail)) {
-                alert('We don\'t have that account\n')
-            }
-            else if (mailLoggedIn) {
-                alert('You are already logged in');
-            }
-            else {
-                let user = getUser(userEmail);
-                if (user.password === userPass) {
-                    mailLoggedIn = user.email;
-                    isLogin = true;
-                    alert(`Welcome, ${user.name}.\n`)
-                    console.log(isLogin);
-                    console.log(mailLoggedIn);
+
+            if (!isLogin) {
+                let userEmail = prompt('Email input').trim();
+                let userPass = prompt('Password input');
+                if (hasUser(userEmail)) {
+                    let user = getUser(userEmail);
+                    if (user.password === userPass) {
+                        mailLoggedIn = user.email;
+                        isLogin = true;
+                        alert(`Welcome, ${user.name}.\n`)
+                        console.log(isLogin);
+                        console.log(mailLoggedIn);
+                    }
+                    else {
+                        alert('The password is incorrect\n')
+                    }
                 }
                 else {
-                    alert('The password is incorrect\n')
+                    alert('We don\'t have that account\n')
                 }
-
-                console.log(database);
             }
+            else {
+                alert('You are already logged in\n')
+            }
+
 
 
             break;
 
         case 'sign up':
-            let name = prompt('insert your name');
-            let email = prompt('Insert email').trim();
 
-            while (!isEmailValid(email) && email !== 'exit*') {
-                alert('Insert a valid email\n');
-                email = prompt('Insert email');
-                isEmailValid(email);
+            if (!isLogin) {
+                let name = prompt('insert your name');
+                let email = prompt('Insert email').trim();
+
+                while (!isEmailValid(email) && email !== 'exit*') {
+                    alert('Insert a valid email\n');
+                    email = prompt('Insert email');
+                    isEmailValid(email);
+                }
+
+                while (hasUser(email) && email !== 'exit*') {
+                    alert('Sorry, that email is already taken\n');
+                    email = prompt('Insert email');
+                    hasUser(email);
+                }
+
+
+                if (email !== 'exit*') {
+                    let password = prompt('Insert password');
+                    createUser(name, email, password)
+                    alert('Thank you for your registration, welcome!\n');
+                }
+
+                console.dir(database);
+
+            }
+            else {
+                alert('You are already logged in\n')
             }
 
-            while (hasUser(email) && email !== 'exit*') {
-                alert('Sorry, that email is already taken\n');
-                email = prompt('Insert email');
-                hasUser(email);
-            }
-
-            while (isLogin) {
-                alert('log out first before you create a new account\n');
-            }
-
-            let password = prompt('Insert password');
-            if (email !== 'exit*') {
-                createUser(name, email, password)
-            }
-
-            console.dir(database);
-            alert('Thank you for your registration, welcome!\n');
 
 
             break;
