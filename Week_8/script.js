@@ -1,21 +1,16 @@
+class Instagram {
 
-let userInput = prompt('User input!');
-let database = [];
-let isLogin = false;
-let mailLoggedIn = '';
+    isEmailValid(email) {
+        var re = /^([a-zA-Z0-9\_\-\.]+)@([a-zA-Z0-9\_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
-while (userInput !== 'exit') {
-
-
-    function User(name, email, password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.followers = 0;
-        this.following = 0;
+        if (re.test(email)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    const hasUser = (mailUser) => {
+    hasUser(mailUser) {
         let validEmail = false;
         for (db of database) {
             if (db['email'] === mailUser) {
@@ -31,21 +26,11 @@ while (userInput !== 'exit') {
         }
     }
 
-    const isEmailValid = (email) => {
-        var re = /^([a-zA-Z0-9\_\-\.]+)@([a-zA-Z0-9\_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-        if (re.test(email)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    const createUser = (name, email, password) => {
+    createUser(name, email, password) {
         database.push(new User(name, email, password));
     }
 
-    const getUser = (mail) => {
+    getUser(mail) {
         for (db of database) {
             if (db['email'] === mail) {
                 return db;
@@ -53,18 +38,39 @@ while (userInput !== 'exit') {
         }
     }
 
+}
+
+class User {
+    constructor(name, email, password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.followers = 0;
+        this.following = 0;
+
+
+    }
+}
+
+
+
+let userInput = prompt('User input!');
+let database = [];
+let isLogin = false;
+let mailLoggedIn = '';
+
+while (userInput !== 'exit') {
+
 
     switch (userInput) {
 
         case 'log in':
 
-
-
             if (!isLogin) {
                 let userEmail = prompt('Email input').trim();
                 let userPass = prompt('Password input');
-                if (hasUser(userEmail)) {
-                    let user = getUser(userEmail);
+                if (Instagram.prototype.hasUser(userEmail)) {
+                    let user = Instagram.prototype.getUser(userEmail);
                     if (user.password === userPass) {
                         mailLoggedIn = user.email;
                         isLogin = true;
@@ -94,22 +100,22 @@ while (userInput !== 'exit') {
                 let name = prompt('insert your name');
                 let email = prompt('Insert email').trim();
 
-                while (!isEmailValid(email) && email !== 'exit*') {
+                while (!Instagram.prototype.isEmailValid(email) && email !== 'exit*') {
                     alert('Insert a valid email\n');
                     email = prompt('Insert email');
-                    isEmailValid(email);
+                    Instagram.prototype.isEmailValid(email);
                 }
 
-                while (hasUser(email) && email !== 'exit*') {
+                while (Instagram.prototype.hasUser(email) && email !== 'exit*') {
                     alert('Sorry, that email is already taken\n');
                     email = prompt('Insert email');
-                    hasUser(email);
+                    Instagram.prototype.hasUser(email);
                 }
 
 
                 if (email !== 'exit*') {
                     let password = prompt('Insert password');
-                    createUser(name, email, password)
+                    Instagram.prototype.createUser(name, email, password)
                     alert('Thank you for your registration, welcome!\n');
                 }
 
@@ -128,8 +134,8 @@ while (userInput !== 'exit') {
 
             if (isLogin) {
                 let searchEmail = prompt('Search email').trim();
-                if (hasUser(searchEmail)) {
-                    let data = getUser(searchEmail)
+                if (Instagram.prototype.hasUser(searchEmail)) {
+                    let data = Instagram.prototype.getUser(searchEmail)
                     alert(data['name']);
                     alert(data['email']);
                     alert('Followers: ' + data['followers']);
@@ -162,9 +168,9 @@ while (userInput !== 'exit') {
             if (isLogin) {
                 let userFollow = prompt('Insert email').trim();
 
-                if (hasUser(userFollow)) {
-                    let followedUser = getUser(userFollow);
-                    let followingUser = getUser(mailLoggedIn);
+                if (Instagram.prototype.hasUser(userFollow)) {
+                    let followedUser = Instagram.prototype.getUser(userFollow);
+                    let followingUser = Instagram.prototype.getUser(mailLoggedIn);
 
                     followedUser.followers += 1;
                     followingUser.following += 1;
@@ -193,3 +199,11 @@ while (userInput !== 'exit') {
 }
 
 alert('You left the program, bye');
+
+
+
+
+
+
+
+
