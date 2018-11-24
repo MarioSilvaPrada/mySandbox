@@ -1,43 +1,195 @@
+// ALERT VARIABLES
+
+const USER_INPUT = 'Insert your input';
+
+const NAME_INPUT = 'Insert your name';
+const MAIL_INPUT = 'Insert your mail';
+const PASSWORD_INPUT = 'Insert your input';
+
+const PASSWORD_ALERT = 'The password is incorrect\n';
+const ACCOUNT_ALERT = 'We don\'t have that account\n';
+const LOGGEDIN_ALERT = 'You are already logged in\n';
+const USER_LOGGEDIN = 'Sorry, you have to be logged in to use that functionality\n';
+const REGIST_WELCOME = 'Thank you for your registration, welcome!\n';
+const LOGGEDOUT_ALERT = 'You logged out, see you later\n';
+const QUERY_ALERT = 'We have no results for that query\n';
+const NOT_EXIST_ALERT = 'That user does not exist\n';
+const OPTION_ALERT = 'We don\'t have that option\n';
+
+
+// CONSTRUCTOR FUNCTIONS
+
 class Instagram {
+    
+    constructor() {
+        this.userDatabase = [];
+    }
 
     isEmailValid(email) {
-        var re = /^([a-zA-Z0-9\_\-\.]+)@([a-zA-Z0-9\_\-\.]+)\.([a-zA-Z]{2,5})$/;
+        var reg = /^([a-zA-Z0-9\_\-\.]+)@([a-zA-Z0-9\_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
-        if (re.test(email)) {
-            return true;
-        } else {
-            return false;
-        }
+        return reg.test(email);
+
     }
 
     hasUser(mailUser) {
-        let validEmail = false;
-        for (db of database) {
-            if (db['email'] === mailUser) {
-                validEmail = true;
-            }
-        }
-
-        if (validEmail) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return this.userDatabase.findIndex((user) => {
+            return user.email === mailUser;
+        }) !== -1;
+       
     }
 
     createUser(name, email, password) {
-        database.push(new User(name, email, password));
+        this.userDatabase.push(new User(name, email, password));
     }
 
     getUser(mail) {
-        for (db of database) {
-            if (db['email'] === mail) {
-                return db;
-            }
-        }
+        return this.userDatabase.find((user) => {
+            return user.email === mail;
+        });
     }
 
+    ask() {
+        let userInput = prompt(USER_INPUT);
+        let isLogin = false;
+        let mailLoggedIn = '';
+
+        while (userInput !== 'exit') {
+
+
+            switch (userInput) {
+
+                case 'log in':
+
+                    if (!isLogin) {
+                        let userEmail = prompt(MAIL_INPUT).trim();
+                        let userPass = prompt(PASSWORD_INPUT);
+                        if (this.hasUser(userEmail)) {
+                            let user = this.getUser(userEmail);
+                            if (user.password === userPass) {
+                                mailLoggedIn = user.email;
+                                isLogin = true;
+                                alert(`Welcome, ${user.name}.\n`)
+                                console.log(isLogin);
+                                console.log(mailLoggedIn);
+                            }
+                            else {
+                                alert(PASSWORD_ALERT);
+                            }
+                        }
+                        else {
+                            alert(ACCOUNT_ALERT);
+                        }
+                    }
+                    else {
+                        alert(LOGGEDIN_ALERT)
+                    }
+
+                    break;
+
+                case 'sign up':
+
+                    if (!isLogin) {
+                        let name = prompt(NAME_INPUT);
+                        let email = prompt(MAIL_INPUT).trim();
+
+                        while (!this.isEmailValid(email) && email !== 'exit*') {
+                            alert('Insert a valid email\n');
+                            email = prompt('Insert email');
+                        }
+
+                        while (this.hasUser(email) && email !== 'exit*') {
+                            alert('Sorry, that email is already taken\n');
+                            email = prompt('Insert email');
+                        }
+
+
+                        if (email !== 'exit*') {
+                            let password = prompt('Insert password');
+                            this.createUser(name, email, password);
+                            console.dir(this.userDatabase)
+                            alert(REGIST_WELCOME);
+
+                        }
+
+                    }
+                    else {
+                        alert(LOGGEDIN_ALERT)
+                    }
+
+
+                    break;
+                case 'search':
+
+
+                    if (isLogin) {
+                        let searchEmail = prompt('Search email').trim();
+                        if (this.hasUser(searchEmail)) {
+                            let data = this.getUser(searchEmail)
+                            alert(data['name']);
+                            alert(data['email']);
+                            alert('Followers: ' + data['followers']);
+                            alert('Following: ' + data['following'] + '\n');
+
+                        }
+                        else {
+                            alert(QUERY_ALERT)
+                        }
+                    }
+                    else {
+                        alert(USER_LOGGEDIN)
+                    }
+
+                    break;
+                case 'log out':
+                    if (isLogin) {
+                        isLogin = false;
+                        mailLoggedIn = '';
+                        alert(LOGGEDOUT_ALERT);
+
+                    }
+                    else {
+                        alert(USER_LOGGEDIN)
+                    }
+
+
+                    break;
+                case 'follow':
+                    if (isLogin) {
+                        let userFollow = prompt(MAIL_INPUT).trim();
+
+                        if (this.hasUser(userFollow)) {
+                            let followedUser = this.getUser(userFollow);
+                            let followingUser = this.getUser(mailLoggedIn);
+
+                            followedUser.followers += 1;
+                            followingUser.following += 1;
+
+                            console.dir(followedUser);
+                            console.dir(followingUser);
+
+                            alert(`You now follow ${followedUser.name}\n`)
+                        }
+                        else {
+                            alert(NOT_EXIST_ALERT);
+                        }
+
+                    }
+
+                    else {
+                        alert(USER_LOGGEDIN)
+                    }
+
+                    break;
+                default:
+                    alert(OPTION_ALERT);
+            }
+
+            userInput = prompt(USER_INPUT);
+        }
+
+        alert('You left the program, bye');
+    }
 }
 
 class User {
@@ -48,162 +200,8 @@ class User {
         this.followers = 0;
         this.following = 0;
 
-
     }
 }
 
-
-
-let userInput = prompt('User input!');
-let database = [];
-let isLogin = false;
-let mailLoggedIn = '';
-
-while (userInput !== 'exit') {
-
-
-    switch (userInput) {
-
-        case 'log in':
-
-            if (!isLogin) {
-                let userEmail = prompt('Email input').trim();
-                let userPass = prompt('Password input');
-                if (Instagram.prototype.hasUser(userEmail)) {
-                    let user = Instagram.prototype.getUser(userEmail);
-                    if (user.password === userPass) {
-                        mailLoggedIn = user.email;
-                        isLogin = true;
-                        alert(`Welcome, ${user.name}.\n`)
-                        console.log(isLogin);
-                        console.log(mailLoggedIn);
-                    }
-                    else {
-                        alert('The password is incorrect\n')
-                    }
-                }
-                else {
-                    alert('We don\'t have that account\n')
-                }
-            }
-            else {
-                alert('You are already logged in\n')
-            }
-
-
-
-            break;
-
-        case 'sign up':
-
-            if (!isLogin) {
-                let name = prompt('insert your name');
-                let email = prompt('Insert email').trim();
-
-                while (!Instagram.prototype.isEmailValid(email) && email !== 'exit*') {
-                    alert('Insert a valid email\n');
-                    email = prompt('Insert email');
-                    Instagram.prototype.isEmailValid(email);
-                }
-
-                while (Instagram.prototype.hasUser(email) && email !== 'exit*') {
-                    alert('Sorry, that email is already taken\n');
-                    email = prompt('Insert email');
-                    Instagram.prototype.hasUser(email);
-                }
-
-
-                if (email !== 'exit*') {
-                    let password = prompt('Insert password');
-                    Instagram.prototype.createUser(name, email, password)
-                    alert('Thank you for your registration, welcome!\n');
-                }
-
-                console.dir(database);
-
-            }
-            else {
-                alert('You are already logged in\n')
-            }
-
-
-
-            break;
-        case 'search':
-
-
-            if (isLogin) {
-                let searchEmail = prompt('Search email').trim();
-                if (Instagram.prototype.hasUser(searchEmail)) {
-                    let data = Instagram.prototype.getUser(searchEmail)
-                    alert(data['name']);
-                    alert(data['email']);
-                    alert('Followers: ' + data['followers']);
-                    alert('Following: ' + data['following'] + '\n');
-
-                }
-                else {
-                    alert('We have no results for that query\n')
-                }
-            }
-            else {
-                alert('Sorry, you have to be logged in to use that functionality\n')
-            }
-
-            break;
-        case 'log out':
-            if (isLogin) {
-                isLogin = false;
-                mailLoggedIn = '';
-                alert('You logged out, see you later\n');
-
-            }
-            else {
-                alert('Sorry, you have to be logged in to use that functionality\n')
-            }
-
-
-            break;
-        case 'follow':
-            if (isLogin) {
-                let userFollow = prompt('Insert email').trim();
-
-                if (Instagram.prototype.hasUser(userFollow)) {
-                    let followedUser = Instagram.prototype.getUser(userFollow);
-                    let followingUser = Instagram.prototype.getUser(mailLoggedIn);
-
-                    followedUser.followers += 1;
-                    followingUser.following += 1;
-
-                    console.dir(followedUser);
-                    console.dir(followingUser);
-
-                    alert(`You now follow ${followedUser.name}\n`)
-                }
-                else {
-                    alert('That user does not exist\n');
-                }
-
-            }
-
-            else {
-                alert('Sorry, you have to be logged in to use that functionality\n')
-            }
-
-            break;
-        default:
-            alert('We don\'t have that option\n');
-    }
-
-    userInput = prompt('User input!');
-}
-
-alert('You left the program, bye');
-
-
-
-
-
-
-
-
+let app = new Instagram();
+app.ask();
