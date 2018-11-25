@@ -1,5 +1,14 @@
 
 // CONSTRUCTOR FUNCTIONS
+class User {
+    constructor(name, email, password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.followers = 0;
+        this.following = 0;
+    }
+}
 
 class Instagram {
 
@@ -41,7 +50,6 @@ class Instagram {
         return this.userDatabase.findIndex((user) => {
             return user.email === mailUser;
         }) !== -1;
-
     }
 
     createUser(name, email, password) {
@@ -53,7 +61,6 @@ class Instagram {
             return user.email === mail;
         });
     }
-
 
     // SWITCH FUNCTIONS
 
@@ -170,6 +177,7 @@ class Instagram {
         }
     }
 
+    // Function to ask user input
     askUser() {
 
         this.userInput = prompt(this.USER_INPUT);
@@ -221,15 +229,6 @@ class Instagram {
 
 }
 
-class User {
-    constructor(name, email, password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.followers = 0;
-        this.following = 0;
-    }
-}
 
 let app = new Instagram();
 app.askUser();
