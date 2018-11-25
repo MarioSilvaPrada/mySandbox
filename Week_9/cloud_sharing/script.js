@@ -25,6 +25,54 @@ class Account {
 
 class Cloud {
     constructor() {
+        this.USER_INPUT = 'Insert your input';
+    }
 
+    askUser() {
+        let userInput = prompt(this.USER_INPUT, 'olá');
+
+        switch (this.USER_INPUT) {
+            case 'ADD' :
+
+            break;
+
+            case 'UPLOAD' :
+
+            break;
+
+            case 'SHARE' :
+
+            break;
+
+            case 'MINSPACE' :
+
+            break;
+
+            case 'LISTFILES' :
+             
+            break;
+
+            case 'LISTALL' :
+
+            break;
+
+            case 'EXIT' :
+
+            break;
+
+            case 'UPDATE' :
+
+            break;
+
+            case 'LASTUPDATE' :
+
+            break;
+
+        }
+
+        this.askUser();
     }
 }
+
+let app = new Cloud();
+app.askUser();
