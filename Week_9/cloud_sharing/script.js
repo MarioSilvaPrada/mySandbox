@@ -59,6 +59,7 @@ class Cloud {
         this.ACCOUNT_NOTALLOWED_ALERT = 'Account does not allow file sharing.\n';
         this.ALREADY_SHARED_ALERT = 'File already shared.\n';
         this.SUCCESS_SHARED_ALERT = 'File was shared.\n';
+        this.NOACCOUNT_ALERT = 'No accounts.\n'
     }
 
     // MAIN FUNCTIONS 
@@ -84,7 +85,7 @@ class Cloud {
     getFile(fileName) {
         return this.fileDatabase.find((file) => {
             return file.name === fileName
-        }) 
+        })
     }
 
     checkStorage(account, size) {
@@ -109,15 +110,24 @@ class Cloud {
         }
     }
 
+    // storageSort() {
+    //     this.userDatabase.sort((a, b) => {
+    //         a.storage < b.storage ? 1 : -1;
+    //     })
+    // }
+
 
     // Function to ask user input
     askUser() {
-        let userInput = prompt(this.USER_INPUT).toLocaleUpperCase();
+        let userInput = prompt(this.USER_INPUT);
+        let split = userInput.split(' ');
+        let mainInput = split[0].toUpperCase();
 
-        switch (userInput) {
+
+        switch (mainInput) {
             case 'ADD':
-                let mailInput = prompt(this.MAIL_INPUT);
-                let typeInput = prompt(this.TYPE_INPUT);
+                let mailInput = split[1];
+                let typeInput = split[2];
 
                 if (this.hasUser(mailInput)) {
                     alert(this.ACCOUNT_EXISTS_ALERT);
@@ -131,9 +141,9 @@ class Cloud {
 
 
             case 'UPLOAD':
-                let nameAccount = prompt(this.MAIL_INPUT);
-                let nameFile = prompt(this.FILE_INPUT);
-                let fileSize = parseInt(prompt(this.SIZE_INPUT));
+                let nameAccount = split[1];
+                let nameFile = split[2];
+                let fileSize = split[3];
 
                 if (!this.hasUser(nameAccount)) {
                     alert(this.ACCOUNT_DOESNOT_EXIST_ALERT);
@@ -157,9 +167,9 @@ class Cloud {
                 break;
 
             case 'SHARE':
-                let accountName = prompt(this.MAIL_INPUT);
-                let nameShareAccount = prompt(this.MAIL_INPUT);
-                let fileName = prompt(this.FILE_INPUT);
+                let accountName = split[1]
+                let nameShareAccount = split[2];
+                let fileName = split[3];
 
                 if (!this.hasUser(accountName) || !this.hasUser(nameShareAccount)) {
                     alert(this.ACCOUNT_DOESNOT_EXIST_ALERT);
@@ -170,20 +180,20 @@ class Cloud {
                 else if (!this.isPremium(accountName)) {
                     alert(this.ACCOUNT_NOTALLOWED_ALERT);
                 }
-                else if(this.isShared(fileName)) {
+                else if (this.isShared(fileName)) {
                     alert(this.ALREADY_SHARED_ALERT);
                 }
-                else if(!this.checkStorage(nameShareAccount, this.getFile(fileName).size)){
+                else if (!this.checkStorage(nameShareAccount, this.getFile(fileName).size)) {
                     alert(this.FILE_EXCEED_ALERT)
                 }
                 else {
                     let fileObj = this.getFile(fileName);
                     fileObj.isShared = true;
-                    
-                    if(!this.isPremium(nameShareAccount)) {
+
+                    if (!this.isPremium(nameShareAccount)) {
                         this.getUser(nameShareAccount).storage -= fileObj.size / 2;
-                    } 
-                    
+                    }
+
                     alert(this.SUCCESS_SHARED_ALERT);
                     console.log(this.userDatabase);
                     console.log(this.fileDatabase);
@@ -192,6 +202,21 @@ class Cloud {
                 break;
 
             case 'MINSPACE':
+
+                if (this.userDatabase.length = 0) {
+                    alert(this.NOACCOUNT_ALERT);
+                }
+                else {
+                    let objSort = '';
+                    for (let i = 0; i < this.userDatabase.length; i++) {
+                        objSort = this.userDatabase[0];
+                        if (this.userDatabase[i]['storage'] <= objSort['storage']) {
+                            objSort = this.userDatabase[i];
+                        }
+                    }
+
+                    alert(`Account with least free space: ${objSort['email']}`);
+                }
 
                 break;
 
