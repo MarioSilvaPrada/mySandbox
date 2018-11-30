@@ -13,6 +13,7 @@ class File {
         this.size = size;
         this.account = account;
         this.isShared = false;
+        this.sharedAccounts = [];
     }
 }
 
@@ -194,6 +195,8 @@ class Cloud {
                         this.getUser(nameShareAccount).storage -= fileObj.size / 2;
                     }
 
+                    fileObj.sharedAccounts.push(nameShareAccount);
+
                     alert(this.SUCCESS_SHARED_ALERT);
                     console.log(this.userDatabase);
                     console.log(this.fileDatabase);
@@ -221,15 +224,45 @@ class Cloud {
                 break;
 
             case 'LISTFILES':
+                let userAccount = split[1];
+                
+                if (!this.hasUser(userAccount)) {
+                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT)
+                }
+                else {
+                    alert('Account files:');
+                    for (let i = 0; i < this.fileDatabase.length; i ++) {
+                        if (this.fileDatabase[i]['account'] === userAccount) {
+                            if(i != this.userDatabase.length - 1) {
+                                alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB)`);
+                            }
+                            else {
+                                alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB)\n`);
+                            }
+                            
+                        }
+                    }
+                }
 
                 break;
 
             case 'LISTALL':
 
+                alert('All accounts:');
+
+                for (let i = 0; i < this.userDatabase.length; i++) {
+                    if (i != this.userDatabase.length - 1) {
+                        alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})`);
+                    }
+                    else {
+                        alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})\n`);
+                    }
+                }
+
                 break;
 
             case 'EXIT':
-
+                alert('Exiting...' + '\n');
                 return;
 
             case 'UPDATE':
