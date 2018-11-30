@@ -48,19 +48,19 @@ class Cloud {
         this.MAIL_INPUT = 'Insert your mail';
         this.TYPE_INPUT = 'What type of account do you have?';
         this.FILE_INPUT = 'Insert File Name';
-        this.SIZE_INPUT = 'What is the size of the file?\n';
+        this.SIZE_INPUT = 'What is the size of the file?';
 
-        this.ACCOUNT_EXISTS_ALERT = 'Account already exists.\n';
-        this.ACCOUNT_DOESNOT_EXIST_ALERT = 'Account does not exist.\n';
-        this.ACCOUNT_ADDED_ALERT = 'Account was added.\n';
-        this.FILE_EXCEED_ALERT = 'File size exceeds account capacity.\n';
-        this.FILE_EXIST_ALERT = 'File already exists in the account.\n';
-        this.FILE_DOESNOT_EXIST_ALERT = 'File does not exist.\n';
-        this.FILE_UPLOAD_SUCCESS = 'File uploaded into account.\n';
-        this.ACCOUNT_NOTALLOWED_ALERT = 'Account does not allow file sharing.\n';
-        this.ALREADY_SHARED_ALERT = 'File already shared.\n';
-        this.SUCCESS_SHARED_ALERT = 'File was shared.\n';
-        this.NOACCOUNT_ALERT = 'No accounts.\n'
+        this.ACCOUNT_EXISTS_ALERT = 'Account already exists.';
+        this.ACCOUNT_DOESNOT_EXIST_ALERT = 'Account does not exist.';
+        this.ACCOUNT_ADDED_ALERT = 'Account was added.';
+        this.FILE_EXCEED_ALERT = 'File size exceeds account capacity.';
+        this.FILE_EXIST_ALERT = 'File already exists in the account.';
+        this.FILE_DOESNOT_EXIST_ALERT = 'File does not exist.';
+        this.FILE_UPLOAD_SUCCESS = 'File uploaded into account.';
+        this.ACCOUNT_NOTALLOWED_ALERT = 'Account does not allow file sharing.';
+        this.ALREADY_SHARED_ALERT = 'File already shared.';
+        this.SUCCESS_SHARED_ALERT = 'File was shared.';
+        this.NOACCOUNT_ALERT = 'No accounts.'
     }
 
     // MAIN FUNCTIONS 
@@ -105,18 +105,14 @@ class Cloud {
         }
     }
 
-    isShared(file) {
-        if (this.getFile(file).isShared) {
+    // acrescentar terceiro argumento main account
+    isShared(file, account) {
+        let fileObj = this.getFile(file);
+
+        if (fileObj['sharedAccounts'].includes(account)) {
             return true;
         }
     }
-
-    // storageSort() {
-    //     this.userDatabase.sort((a, b) => {
-    //         a.storage < b.storage ? 1 : -1;
-    //     })
-    // }
-
 
     // Function to ask user input
     askUser() {
@@ -132,10 +128,12 @@ class Cloud {
 
                 if (this.hasUser(mailInput)) {
                     alert(this.ACCOUNT_EXISTS_ALERT);
+                    alert('');
                 }
                 else {
                     typeInput === 'premium' ? this.userDatabase.push(new Premium(mailInput)) : this.userDatabase.push(new Basic(mailInput))
                     alert(this.ACCOUNT_ADDED_ALERT);
+                    alert('');
                     console.log(this.userDatabase);
                 }
                 break;
@@ -151,9 +149,11 @@ class Cloud {
                 }
                 else if (this.hasFile(nameFile, nameAccount)) {
                     alert(this.FILE_EXIST_ALERT);
+                    alert('');
                 }
                 else if (!this.checkStorage(nameAccount, fileSize)) {
                     alert(this.FILE_EXCEED_ALERT);
+                    alert('');
                 }
                 else {
                     let obj = this.getUser(nameAccount);
@@ -162,7 +162,7 @@ class Cloud {
 
                     console.log(this.userDatabase);
                     console.log(this.fileDatabase);
-                    alert(this.FILE_UPLOAD_SUCCESS);
+                    alert(this.FILE_UPLOAD_SUCCESS + '\n');
                 }
 
                 break;
@@ -181,23 +181,35 @@ class Cloud {
                 else if (!this.isPremium(accountName)) {
                     alert(this.ACCOUNT_NOTALLOWED_ALERT);
                 }
-                else if (this.isShared(fileName)) {
+                else if (this.isShared(fileName, nameShareAccount)) {
                     alert(this.ALREADY_SHARED_ALERT);
-                }
-                else if (!this.checkStorage(nameShareAccount, this.getFile(fileName).size)) {
-                    alert(this.FILE_EXCEED_ALERT)
+                    alert('');
                 }
                 else {
                     let fileObj = this.getFile(fileName);
-                    fileObj.isShared = true;
+
 
                     if (!this.isPremium(nameShareAccount)) {
-                        this.getUser(nameShareAccount).storage -= fileObj.size / 2;
+                        if (!this.checkStorage(nameShareAccount, this.getFile(fileName).size)) {
+                            alert(this.FILE_EXCEED_ALERT);
+                            alert('');
+                        }
+                        else {
+                            this.getUser(nameShareAccount).storage -= fileObj.size / 2;
+                            fileObj.sharedAccounts.push(nameShareAccount);
+                            fileObj.isShared = true;
+
+                            alert(this.SUCCESS_SHARED_ALERT);
+                            alert('');
+                        }
                     }
+                    else {
+                        fileObj.sharedAccounts.push(nameShareAccount);
+                        fileObj.isShared = true;
 
-                    fileObj.sharedAccounts.push(nameShareAccount);
-
-                    alert(this.SUCCESS_SHARED_ALERT);
+                        alert(this.SUCCESS_SHARED_ALERT);
+                        alert('');
+                    }
                     console.log(this.userDatabase);
                     console.log(this.fileDatabase);
                 }
@@ -225,23 +237,23 @@ class Cloud {
 
             case 'LISTFILES':
                 let userAccount = split[1];
-                
+
                 if (!this.hasUser(userAccount)) {
                     alert(this.ACCOUNT_DOESNOT_EXIST_ALERT)
                 }
                 else {
                     alert('Account files:');
-                    for (let i = 0; i < this.fileDatabase.length; i ++) {
+                    for (let i = 0; i < this.fileDatabase.length; i++) {
                         if (this.fileDatabase[i]['account'] === userAccount) {
-                            if(i != this.userDatabase.length - 1) {
-                                alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB)`);
-                            }
-                            else {
-                                alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB)\n`);
-                            }
-                            
+                            alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB)`);
                         }
                     }
+                    for (let i = 0; i < this.fileDatabase.length; i++) {
+                        if (this.fileDatabase[i]['sharedAccounts'].includes(userAccount)) {
+                            alert(`${this.fileDatabase[i]['name']} (${this.fileDatabase[i]['size']} MB) (shared)`);
+                        }
+                    }
+                    alert('');
                 }
 
                 break;
@@ -251,18 +263,16 @@ class Cloud {
                 alert('All accounts:');
 
                 for (let i = 0; i < this.userDatabase.length; i++) {
-                    if (i != this.userDatabase.length - 1) {
-                        alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})`);
-                    }
-                    else {
-                        alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})\n`);
-                    }
+                    alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})`);
+
                 }
+                alert('');
 
                 break;
 
             case 'EXIT':
-                alert('Exiting...' + '\n');
+                alert('Exiting...');
+                alert('');
                 return;
 
             case 'UPDATE':
