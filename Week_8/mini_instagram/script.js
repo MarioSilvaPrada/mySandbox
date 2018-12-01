@@ -35,7 +35,8 @@ class Instagram {
         this.QUERY_ALERT = 'We have no results for that query\n';
         this.NOT_EXIST_ALERT = 'That user does not exist\n';
         this.OPTION_ALERT = 'We don\'t have that option\n';
-        this.EXIT_ALERT = 'You left the program, bye'
+        this.SIGNUP_ALERT = 'log out first before you create a new account\n'
+        this.EXIT_ALERT = 'You left the program, bye';
     }
 
     // MAIN FUNCTIONS
@@ -114,7 +115,7 @@ class Instagram {
 
         }
         else {
-            alert(this.LOGGEDIN_ALERT)
+            alert(this.SIGNUP_ALERT)
         }
     }
 
