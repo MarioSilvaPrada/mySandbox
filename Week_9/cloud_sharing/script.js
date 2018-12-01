@@ -136,7 +136,6 @@ class Cloud {
         }
     }
 
-
     // SWITCH FUNCTIONS
 
     addUser(split) {
@@ -270,8 +269,8 @@ class Cloud {
 
         for (let i = 0; i < this.userDatabase.length; i++) {
             alert(`${this.userDatabase[i]['email']} (${this.userDatabase[i].constructor.name})`);
-
         }
+        
         alert('');
     }
 
