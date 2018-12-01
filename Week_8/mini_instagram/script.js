@@ -112,7 +112,6 @@ class Instagram {
                 console.dir(this.userDatabase)
                 alert(this.REGIST_WELCOME);
             }
-
         }
         else {
             alert(this.SIGNUP_ALERT)
