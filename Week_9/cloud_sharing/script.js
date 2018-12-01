@@ -142,7 +142,7 @@ class Cloud {
                 let fileSize = split[3];
 
                 if (!this.hasUser(nameAccount)) {
-                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT);
+                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT + '\n');
                 }
                 else if (this.hasFile(nameFile, nameAccount)) {
                     alert(this.FILE_EXIST_ALERT);
@@ -170,13 +170,13 @@ class Cloud {
                 let fileName = split[3];
 
                 if (!this.hasUser(accountName) || !this.hasUser(nameShareAccount)) {
-                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT);
+                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT + '\n');
                 }
                 else if (!this.hasFile(fileName, accountName)) {
-                    alert(this.FILE_DOESNOT_EXIST_ALERT);
+                    alert(this.FILE_DOESNOT_EXIST_ALERT + '\n');
                 }
                 else if (!this.isPremium(accountName)) {
-                    alert(this.ACCOUNT_NOTALLOWED_ALERT);
+                    alert(this.ACCOUNT_NOTALLOWED_ALERT + '\n');
                 }
                 else if (this.isShared(accountName, nameShareAccount, fileName)) {
                     alert(this.ALREADY_SHARED_ALERT);
@@ -218,23 +218,23 @@ class Cloud {
                     alert(this.NOACCOUNT_ALERT + '\n');
                 }
                 else {
-                    let objSort = '';
+                    let objSort = this.userDatabase[0];
                     for (let i = 0; i < this.userDatabase.length; i++) {
-                        objSort = this.userDatabase[0];
+                        
                         if (this.userDatabase[i]['storage'] < objSort['storage']) { 
                             objSort = this.userDatabase[i];
                         }
                     }
-                    alert(`Account with least free space: ${objSort['email']} \n`);
+                    alert(`Account with least free space: ${objSort['email']}\n`);
                 }
 
                 break;
-
+                
             case 'LISTFILES':
                 let userAccount = split[1];
 
                 if (!this.hasUser(userAccount)) {
-                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT)
+                    alert(this.ACCOUNT_DOESNOT_EXIST_ALERT + '\n')
                 }
                 else {
                     alert('Account files:');
