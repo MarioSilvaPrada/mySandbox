@@ -331,7 +331,6 @@ class Cloud {
 
                 break;
 
-
             case 'UPLOAD':
 
                 this.uploadUser(split);
@@ -379,9 +378,7 @@ class Cloud {
                 this.lastupdateUser(split);
 
                 break;
-
         }
-
         return this.askUser();
     }
 }
