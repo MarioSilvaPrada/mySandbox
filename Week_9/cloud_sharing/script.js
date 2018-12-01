@@ -83,14 +83,14 @@ class Cloud {
         }) !== -1
     }
 
-    getFile(fileName) {
+    getFile(account,fileName) {
         return this.fileDatabase.find((file) => {
-            return file.name === fileName
+            return file.account === account && file.name === fileName;
         })
     }
 
     checkStorage(account, size) {
-        if (this.getUser(account).storage > size) {
+        if (this.getUser(account).storage >= size) {
             return true;
         }
     }
@@ -106,12 +106,9 @@ class Cloud {
     }
 
     // acrescentar terceiro argumento main account
-    isShared(file, account) {
-        let fileObj = this.getFile(file);
-
-        if (fileObj['sharedAccounts'].includes(account)) {
-            return true;
-        }
+    isShared(account, sharedaccount, fileName) {
+        let fileObj = this.getFile(account, fileName);
+           return fileObj['sharedAccounts'].includes(sharedaccount);
     }
 
     // Function to ask user input
@@ -181,16 +178,15 @@ class Cloud {
                 else if (!this.isPremium(accountName)) {
                     alert(this.ACCOUNT_NOTALLOWED_ALERT);
                 }
-                else if (this.isShared(fileName, nameShareAccount)) {
+                else if (this.isShared(accountName, nameShareAccount, fileName)) {
                     alert(this.ALREADY_SHARED_ALERT);
                     alert('');
                 }
                 else {
-                    let fileObj = this.getFile(fileName);
-
+                    let fileObj = this.getFile(accountName, fileName);
 
                     if (!this.isPremium(nameShareAccount)) {
-                        if (!this.checkStorage(nameShareAccount, this.getFile(fileName).size)) {
+                        if (!this.checkStorage(nameShareAccount, fileObj.size / 2)) {
                             alert(this.FILE_EXCEED_ALERT);
                             alert('');
                         }
@@ -218,19 +214,18 @@ class Cloud {
 
             case 'MINSPACE':
 
-                if (this.userDatabase.length = 0) {
-                    alert(this.NOACCOUNT_ALERT);
+                if (this.userDatabase.length < 1) {
+                    alert(this.NOACCOUNT_ALERT + '\n');
                 }
                 else {
                     let objSort = '';
                     for (let i = 0; i < this.userDatabase.length; i++) {
                         objSort = this.userDatabase[0];
-                        if (this.userDatabase[i]['storage'] <= objSort['storage']) {
+                        if (this.userDatabase[i]['storage'] < objSort['storage']) { 
                             objSort = this.userDatabase[i];
                         }
                     }
-
-                    alert(`Account with least free space: ${objSort['email']}`);
+                    alert(`Account with least free space: ${objSort['email']} \n`);
                 }
 
                 break;
@@ -271,8 +266,7 @@ class Cloud {
                 break;
 
             case 'EXIT':
-                alert('Exiting...');
-                alert('');
+                alert('Exiting...' + '\n');
                 return;
 
             case 'UPDATE':
