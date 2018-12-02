@@ -80,7 +80,8 @@ class Cloud {
         this.SUCCESS_SHARED_ALERT = 'File was shared.';
         this.NOACCOUNT_ALERT = 'No accounts.';
         this.FILE_NOTSHARED_ALERT = 'File not shared.';
-        this.FILE_UPDATED_ALERT = 'File was updated.'
+        this.FILE_UPDATED_ALERT = 'File was updated.';
+        this.EXIT_ALERT = 'Exiting...';
     }
 
     // MAIN FUNCTIONS 
@@ -275,7 +276,7 @@ class Cloud {
     }
 
     exitUser() {
-        alert('Exiting...' + '\n');
+        alert(this.EXIT_ALERT + '\n');
     }
 
     updateUser(split) {
