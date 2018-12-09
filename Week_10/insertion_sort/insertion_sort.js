@@ -18,3 +18,5 @@ function insertionSort (items) {
 
 console.log(insertionSort(arr));
 
+// For this algorithm, as far as its time complexity, the worst case scenario is O(n^2) because as the number of inputs grows, we have n^2 results.
+
