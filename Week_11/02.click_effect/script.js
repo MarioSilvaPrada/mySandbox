@@ -12,5 +12,4 @@ function changeImage() {
         image.setAttribute('src', './img/img1.jpg');
         image.setAttribute('alt', 'img1')
     }
-
 }
