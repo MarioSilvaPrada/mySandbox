@@ -1,0 +1,26 @@
+.container {
+    margin: auto 20px;
+    width:800px;
+    margin: 20px auto;
+}
+
+img {
+    width: 500px;
+    margin: auto;
+    display: block;
+}
+
+button {
+    display:block;
+    width: 500px;
+    margin: 30px auto;
+    padding: 20px 50px;
+    border-radius: 5px;
+    background-color: orangered;
+    border: 2px black solid;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
