@@ -1,0 +1,97 @@
+* {
+    margin:0;
+    padding: 0;
+}
+
+body {
+    background: rgb(173, 168, 168);
+}
+
+header {
+    display: grid;
+    grid-template-columns: 100% ;
+    grid-template-rows: 2fr 0.5fr;
+    grid-template-areas: 
+    " title "
+    " subtitle ";
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.first-row {
+    grid-area: title;
+    background-color: rgb(43, 91, 224);
+}
+
+.second-row {
+    grid-area: subtitle;
+    background-color: #eee;
+}
+
+.title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5em;
+    margin: 30px auto;
+    color: white;
+}
+
+.title .p2 {
+    font-size: 2em;
+}
+
+.subtitle {
+    display: flex;
+    justify-content: space-between;
+    width:800px;
+    margin: auto; 
+    font-weight: bold;   
+    align-items: center;
+    height: 100%;
+}
+
+.difficulty {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+    height: 100%;
+}
+
+.hard, .easy {
+    align-self: center;
+    height: 100%;
+    align-content: center;
+}
+
+.hard, .easy:hover {
+    cursor: pointer;
+}
+
+.difficulty-select {
+    background: rgb(43, 91, 224);
+    color: white;
+}
+
+.border {
+    width:800px;
+    margin: 30px auto;
+}
+.square-division {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+.square {
+    width: 100%;
+    height: 235px;
+    border-radius: 35px;
+}
+
+.square:hover {
+    cursor: pointer;
+}
+
