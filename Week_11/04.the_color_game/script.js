@@ -34,6 +34,9 @@ const newGame = () => {
         square.style.opacity = 1;
     });
 
+    //set text "New Colors"
+    newColors.textContent = 'New Colors';
+
     // clean answer from previous game
     let answer = document.querySelector('.answer');
     answer.textContent = '';
@@ -69,6 +72,7 @@ const newGame = () => {
                     square.style.background = guess;
                 })
                 answer.textContent = 'Correct!'
+                newColors.textContent = 'Play again?'
             }
             else {
                 square.style.opacity = 0;
