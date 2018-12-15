@@ -1,8 +1,9 @@
 let newColors = document.querySelector('.newcolors');
 let difficulty = document.querySelector('.difficulty');
 
-
 let mainTitle = document.querySelector('.p2');
+
+let squares = Array.from(document.querySelectorAll('.square'));
 
 const levelChoice = (e) => {
     let hard = document.querySelector('#hard');
@@ -24,6 +25,15 @@ difficulty.addEventListener('click', levelChoice);
 
 const newGame = () => {
 
+    // clean answer from previous game
+    let answer = document.querySelector('.answer');
+    answer.textContent = '';
+
+    // ser header background to default color
+    let header = document.querySelector('.first-row');
+    header.style.background = 'rgb(43, 91, 224)';
+
+
     let squares = Array.from(document.querySelectorAll('.square'));
     squares.map(square => {
         let red = Math.floor(Math.random() * 256);
@@ -43,15 +53,17 @@ const newGame = () => {
             let squareSelected = square.style.background;
 
             if (guess === squareSelected) {
-                let header = document.querySelector('.first-row');
+                
                 header.style.background = guess;
                 squares.map(square => {
                     square.style.opacity = 1;
                     square.style.background = guess;
                 })
+                answer.textContent = 'Correct!' 
             }
             else {
                 square.style.opacity = 0;
+                answer.textContent = 'Incorrect'
             }
         })
     });
