@@ -1,29 +1,38 @@
 let newColors = document.querySelector('.newcolors');
-let difficulty = document.querySelector('.difficulty');
-
 let mainTitle = document.querySelector('.p2');
 
-let squares = Array.from(document.querySelectorAll('.square'));
-
-const levelChoice = (e) => {
-    let hard = document.querySelector('#hard');
-    let easy = document.querySelector('#easy');
-
-    if (e.target.id === 'hard') {
-        e.target.className = 'difficulty-select';
-        easy.className = 'none';
-    }
-    else {
-        e.target.className = 'difficulty-select';
-        hard.className = 'none';
-    }
-}
-
-
-difficulty.addEventListener('click', levelChoice);
-
+let level = 'hard';
 
 const newGame = () => {
+    let squareDivision = document.querySelector('.square-division');
+
+    // clean all squares
+    while(squareDivision.firstChild) {
+        squareDivision.removeChild(squareDivision.firstChild);
+    }
+
+    if (level === 'hard') {
+        for (let i = 0; i < 6; i++) {
+            let square = document.createElement('div');
+            square.className = 'square';
+
+            squareDivision.appendChild(square);
+        }
+    }
+    else {
+        for (let i = 0; i < 3; i++) {
+            let square = document.createElement('div');
+            square.className = 'square';
+
+            squareDivision.appendChild(square);
+        }
+    }
+
+    let squares = Array.from(document.querySelectorAll('.square'));
+
+    squares.map(square => {
+        square.style.opacity = 1;
+    });
 
     // clean answer from previous game
     let answer = document.querySelector('.answer');
@@ -34,7 +43,6 @@ const newGame = () => {
     header.style.background = 'rgb(43, 91, 224)';
 
 
-    let squares = Array.from(document.querySelectorAll('.square'));
     squares.map(square => {
         let red = Math.floor(Math.random() * 256);
         let green = Math.floor(Math.random() * 256);
@@ -43,7 +51,8 @@ const newGame = () => {
         square.style.background = `RGB(${red},${green},${blue})`;
     });
 
-    let squareIndex = Math.floor(Math.random() * 6);
+
+    let squareIndex = level === 'hard' ? Math.floor(Math.random() * 6) : Math.floor(Math.random() * 3)
     let guess = squares[squareIndex].style.background;
 
     mainTitle.textContent = guess;
@@ -53,13 +62,13 @@ const newGame = () => {
             let squareSelected = square.style.background;
 
             if (guess === squareSelected) {
-                
+
                 header.style.background = guess;
                 squares.map(square => {
                     square.style.opacity = 1;
                     square.style.background = guess;
                 })
-                answer.textContent = 'Correct!' 
+                answer.textContent = 'Correct!'
             }
             else {
                 square.style.opacity = 0;
@@ -71,8 +80,30 @@ const newGame = () => {
 
 newGame();
 
+// create a new game
 newColors.addEventListener('click', newGame);
 
 
+// change difficulty
+let difficulty = document.querySelector('.difficulty');
 
+const levelChoice = (e) => {
+    let hard = document.querySelector('#hard');
+    let easy = document.querySelector('#easy');
+
+    if (e.target.id === 'hard') {
+        e.target.className = 'difficulty-select';
+        easy.className = 'none';
+        level = 'hard';
+        newGame();
+    }
+    else {
+        e.target.className = 'difficulty-select';
+        hard.className = 'none';
+        level = 'easy';
+        newGame();
+    }
+}
+
+difficulty.addEventListener('click', levelChoice);
 
