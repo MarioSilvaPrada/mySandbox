@@ -1,40 +1,65 @@
-let squares = Array.from(document.querySelectorAll('.square'));
+let newColors = document.querySelector('.newcolors');
+let difficulty = document.querySelector('.difficulty');
+
+
 let mainTitle = document.querySelector('.p2');
 
-squares.map(square => {
-    let red = Math.floor(Math.random() * 256);
-    let green = Math.floor(Math.random() * 256);
-    let blue = Math.floor(Math.random() * 256);
+const levelChoice = (e) => {
+    let hard = document.querySelector('#hard');
+    let easy = document.querySelector('#easy');
 
-    square.style.background = `RGB(${red},${green},${blue})`;
-});
-
-let squareIndex = Math.floor(Math.random() * 6);
-let choice = squares[squareIndex].style.background;
-
-mainTitle.textContent = choice;
-
-squares.map(square => {
-    square.addEventListener('click', () => {
-        let squareSelected = square.style.background;
-
-        if (choice === squareSelected) {
-            let header = document.querySelector('.first-row');
-            header.style.background = choice;
-            squares.map(square => {
-                square.style.opacity = 1;
-                square.style.background = choice;
-            })
-        }
-        else {
-            square.style.opacity = 0;
-        }
-    })
-})
+    if (e.target.id === 'hard') {
+        e.target.className = 'difficulty-select';
+        easy.className = 'none';
+    }
+    else {
+        e.target.className = 'difficulty-select';
+        hard.className = 'none';
+    }
+}
 
 
+difficulty.addEventListener('click', levelChoice);
 
 
+const newGame = () => {
+
+    let squares = Array.from(document.querySelectorAll('.square'));
+    squares.map(square => {
+        let red = Math.floor(Math.random() * 256);
+        let green = Math.floor(Math.random() * 256);
+        let blue = Math.floor(Math.random() * 256);
+
+        square.style.background = `RGB(${red},${green},${blue})`;
+    });
+
+    let squareIndex = Math.floor(Math.random() * 6);
+    let guess = squares[squareIndex].style.background;
+
+    mainTitle.textContent = guess;
+
+    squares.map(square => {
+        square.addEventListener('click', () => {
+            let squareSelected = square.style.background;
+
+            if (guess === squareSelected) {
+                let header = document.querySelector('.first-row');
+                header.style.background = guess;
+                squares.map(square => {
+                    square.style.opacity = 1;
+                    square.style.background = guess;
+                })
+            }
+            else {
+                square.style.opacity = 0;
+            }
+        })
+    });
+}
+
+newGame();
+
+newColors.addEventListener('click', newGame);
 
 
 

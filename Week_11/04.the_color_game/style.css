@@ -28,6 +28,10 @@ header {
     background-color: #eee;
 }
 
+.newcolors:hover {
+    cursor: pointer;
+}
+
 .title {
     text-align: center;
     display: flex;
@@ -54,17 +58,18 @@ header {
 .difficulty {
     display: flex;
     justify-content: space-between;
-    width: 120px;
     height: 100%;
 }
 
-.hard, .easy {
-    align-self: center;
+#hard, #easy {
     height: 100%;
-    align-content: center;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
-.hard, .easy:hover {
+#hard, #easy:hover {
     cursor: pointer;
 }
 
