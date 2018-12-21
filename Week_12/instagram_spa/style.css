@@ -1,0 +1,14 @@
+form {
+    border: 1px solid #ccc;
+    padding: 30px 50px;
+    width: 500px;
+    border-radius: 10px;
+    align-self: center;
+    
+}
+
+.signin {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
