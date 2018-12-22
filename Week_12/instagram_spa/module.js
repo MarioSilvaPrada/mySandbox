@@ -1,25 +1,26 @@
-export function logIn() {
-    return`
+export function userSign() {
+    return `
+    <div class="signin">
+        <form action="">
             <h3 class='sign-status'>Log In</h3>
             <label for="">Email</label>
-            <input type="email" placeholder="Your Email" class="u-full-width">
+            <input type="email" placeholder="Your Email" class="u-full-width input-email">
             <label for="">Password</label>
-            <input type="password" placeholder="Password" class="u-full-width">
+            <input type="password" placeholder="Password" class="u-full-width input-password">
             <input type="submit" class='button-primary'> <br>
             <button class='sign-btn'>Sign Up</button>
+            </form>
+    </div>
         `
 }
 
-export function signUp() {
-    return`
-            <h3 class='sign-status'>Sign Up</h3>
-            <label for="">Name</label>
-            <input type="text" placeholder="Your Name" class="u-full-width">
-            <label for="">Email</label>
-            <input type="email" placeholder="Your Email" class="u-full-width">
-            <label for="">Password</label>
-            <input type="password" placeholder="Password" class="u-full-width">
-            <input type="submit" class='button-primary'> <br>
-            <button class='sign-btn'>Log In</button>
+export function userExist() {
+    return `
+    <div class="user-exist">
+        <div class ='msg-user-exist'>
+            <h5>Sorry, that email is already taken</h5>
+            <button class='button-primary ok-btn'>OK</button>
+        </div>   
+    </div>
         `
 }
