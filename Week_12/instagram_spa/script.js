@@ -90,6 +90,19 @@ $('input[type="submit"]').on('click', function () {
 })
 
 
+// // main file:
+// // ==========
 
+// import * as htmlComponents from "html.js"
+
+// const addhtml = () => {
+//   document.body.appendChild(htmlComponents.example)
+//   document.getElementById("example").addEventListener() // etc
+// }
+
+// // --------------
+// // other file: html.js
+
+// export const example = `<div id="example"></div>`;
 
 
