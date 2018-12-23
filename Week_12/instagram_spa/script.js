@@ -1,4 +1,4 @@
-import { userSign, userExist } from './module.js';
+import { userSign, userExist, userCreated } from './module.js';
 
 
 
@@ -33,12 +33,14 @@ function getUser(mail) {
     });
 }
 
-const input = $('.input')[0];
+const input = $('.input');
 
-input.innerHTML = userSign();
+input.html(userSign());
 
-$('.sign-btn').on('click', function (e) {
-    e.preventDefault();
+let signBtn = $('.sign-btn');
+
+signBtn.on('click', function () {
+    
     let sign = $('.sign-status')[0];
     if (sign.textContent === 'Log In') {
         sign.textContent = 'Sign Up';
@@ -55,30 +57,39 @@ $('.sign-btn').on('click', function (e) {
     }
 });
 
-$('input[type="submit"]').on('click', function (e) {
-    e.preventDefault();
+$('input[type="submit"]').on('click', function () {
 
     if (!isLogin) {
         let name = $('.input-name').val();
         let email = $('.input-email').val();
         let password = $('.input-password').val();
 
-        hasUser(email) ? input.innerHTML = userExist() : createUser(name, email, password); console.log(userDatabase);
+        // hasUser(email) ? input.html(userExist()) : createUser(name, email, password); console.log(userDatabase)
 
+        if (hasUser(email)) {
+
+           input.html(userExist())
+        }
+        else {
+            createUser(name, email, password); 
+            console.log(userDatabase)
+        }
+        
         $('.input-name').val('');
         $('.input-email').val('');
         $('.input-password').val('');
 
-        $('.ok-btn').on('click', function(e) {
-            e.preventDefault();
-            input.innerHTML = userSign();
-        })
     }
     else {
         alert('log out first before you create a new account')
     }
+    $('.ok-btn').on('click', function() {
+            input.html(userSign());
+        });
 
 })
+
+
 
 
 
