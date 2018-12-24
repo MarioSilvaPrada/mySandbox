@@ -35,7 +35,7 @@ export function userMsg(msg) {
 export function userProfile(user) {
     return `<div class="main-page">
     <div class="header">
-      <span>Welcome ${user.name}</span>
+      <span>${user.name}'s Profile</span>
       <div class="user-btns">
         <button class='profile-btn'>My Profile</button>
         <button class='logout-btn'>Log Out</button>

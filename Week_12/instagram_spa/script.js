@@ -133,7 +133,14 @@ signUser();
 
 
 const page = (user) => {
-    input.html(htmlComponents.userProfile(user))
+    input.html(htmlComponents.userProfile(user));
+
+    //Search
+    $('.btns-search').on('click', function() {
+        let findEmail = $('.email-search').val();
+        
+    })
+
 }
 
 
