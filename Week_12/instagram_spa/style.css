@@ -9,7 +9,10 @@
     width: 500px;
     border-radius: 10px;
     align-self: center;
-    
+}
+
+.name-display {
+    display: none;
 }
 
 .signin {
@@ -30,4 +33,44 @@
     border: 1px solid #ccc;
     padding: 30px 50px;
     border-radius: 10px;
+}
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.main-page {
+    margin-top: 100px;
+    width: 1200px;
+}
+
+.logout-btn:hover {
+border: 1px solid red;
+color:red;
+}
+
+.publish-field {
+border-radius: 10px;
+border: 1px solid #ccc;
+width:100%;
+padding: 20px;
+display:flex;
+flex-direction:column;
+box-sizing: border-box;
+}
+
+.publish-field label {
+text-align: center;
+}
+
+.search-field {
+display:flex;
+justify-content: space-between;
+margin-bottom: 30px;
+}
+
+.email-search {
+width: 60%;
 }
