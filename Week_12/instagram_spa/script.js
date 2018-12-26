@@ -12,6 +12,7 @@ class User {
         this.password = password;
         this.followers = 0;
         this.following = 0;
+        this.urlImages = []
     }
 }
 
@@ -40,6 +41,7 @@ function isEmailValid(email) {
 
 const input = $('.input');
 
+createUser('Mário Prada','m@teste.com', '1', '1224');
 
 const signUser = () => {
     input.html(htmlComponents.userSign);
@@ -134,21 +136,37 @@ signUser();
 
 const page = (user) => {
     input.html(htmlComponents.userProfile(user));
+    let mainUser = getUser(user.email);
 
     //Search
     $('.btns-search').on('click', function() {
         let findEmail = $('.email-search').val();
-        
+
+        if(!hasUser) {
+            alert('We have no results for that query');
+        }
+        else {
+            let user = getUser(findEmail);
+
+            input.html(htmlComponents.userProfile(user));
+            $('.publish-field').hide();
+        }
+    });
+
+    //Publish
+
+    $('.publish-btn').on('click', function() {
+        let url = $('.url-photo').val();
+        let description = $('.user-description').val();
+
+        mainUser.urlImages.unshift([url,description]);
+
+        $('.url-photo').val('');
+        $('.user-description').val('');
+
+        page(mainUser)
     })
-
 }
-
-
-
-
-
-
-
 
 
 // // main file:

@@ -54,16 +54,25 @@ export function userProfile(user) {
     <div class="publish-field">
         <h5>Publish</h5>
         <label for="">Photo URL</label>
-        <input type="text">
+        <input type="text" class='url-photo'>
         <label for="">Description</label>
-        <textarea name="" id="" cols="30" rows="10"></textarea><br>
-        <button class= 'button-primary'>Publish</button>
+        <textarea name="" id="" cols="30" rows="10" class ='user-description'></textarea><br>
+        <button class= 'button-primary publish-btn'>Publish</button>
     </div>
   
     <div class="follow">
         <span>Name:${user.name}</span>
         <span>Followes: <strong>${user.followers}</strong></span>
         <span>Following:<strong>${user.following}</strong> </span>
+    </div>
+
+    <div class ='user-images'>
+        
+    ${user.urlImages.map(img => {
+        return `<img src='${img[0]}' alt='${img[1]}' style='width:100%'>`
+    }).join('')}
+
+        
     </div>
   
     </div>`
