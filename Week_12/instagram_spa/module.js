@@ -69,7 +69,8 @@ export function userProfile(user) {
     <div class ='user-images'>
         
     ${user.urlImages.map(img => {
-        return `<img src='${img[0]}' alt='${img[1]}' style='width:100%'>`
+        return `<div class='img' style='background:url(${img[0]})no-repeat;width:300px;height:300px;background-size:cover'></div>`
+        // return `<img src='${img[0]}' alt='${img[1]}' style='width:auto; height: 500px'>`
     }).join('')}
 
         
