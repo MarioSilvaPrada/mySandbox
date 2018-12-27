@@ -10,8 +10,8 @@ class User {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.followers = 0;
-        this.following = 0;
+        this.followers = [];
+        this.following = [];
         this.urlImages = []
     }
 }
@@ -42,6 +42,7 @@ function isEmailValid(email) {
 const input = $('.input');
 
 createUser('Mário Prada','m@teste.com', '1', '1224');
+createUser('Cláudia Silva','c@teste.com', '1', '1224');
 
 const signUser = () => {
     input.html(htmlComponents.userSign);
@@ -138,20 +139,28 @@ const page = (user) => {
     input.html(htmlComponents.userProfile(user));
     let mainUser = getUser(user.email);
 
+   
+    let visitPage = mainUser.email;
+
     //Search
     $('.btns-search').on('click', function() {
         let findEmail = $('.email-search').val();
-
-        if(!hasUser) {
+        console.log(findEmail); 
+        if(!hasUser(findEmail)) {
             alert('We have no results for that query');
+            $('.email-search').val('');
         }
         else {
             let user = getUser(findEmail);
 
-            input.html(htmlComponents.userProfile(user));
-            $('.publish-field').hide();
+            visitPage = user.email;
+
+            page(user);
+
+            $('.publish-field').hide();            
         }
     });
+
 
     //Publish
 
@@ -166,6 +175,41 @@ const page = (user) => {
 
         page(mainUser)
     })
+
+    //Follow Person
+    $('.follow-btn').on('click', function() {
+        let followingUser = getUser(mailLoggedIn);
+        let followerUser = getUser(visitPage);
+
+        if (followingUser.following.includes(followerUser.email)) {
+            input.html(htmlComponents.userMsg(`YEY! You already follow ${followerUser.name}`));
+        }
+        else {
+            followingUser.following.push(followerUser.email);
+            followerUser.followers.push(followingUser.email);
+            input.html(htmlComponents.userMsg(`You now follow ${followerUser.name}`));
+        }
+
+        $('.ok-btn').on('click', function () {
+            page(followerUser);
+            $('.publish-field').hide();  
+        })
+
+    })
+
+    //My Profile
+    $('.profile-btn').on('click', function() {
+        page(getUser(mailLoggedIn))
+    })
+
+    //Log Out
+    $('.logout-btn').on('click', function() {
+         isLogin = false;
+         mailLoggedIn = '';
+
+         signUser();
+    })
+
 }
 
 

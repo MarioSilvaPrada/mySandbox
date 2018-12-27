@@ -80,6 +80,13 @@ width: 60%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap:20px;
     justify-items: center;
+    margin-top: 40px;
+}
+
+.photo-description {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 6px;
 }
 
 

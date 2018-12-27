@@ -62,15 +62,20 @@ export function userProfile(user) {
   
     <div class="follow">
         <span>Name:${user.name}</span>
-        <span>Followes: <strong>${user.followers}</strong></span>
-        <span>Following:<strong>${user.following}</strong> </span>
+        <span>Followers: <strong>${user.followers.length}</strong></span>
+        <span>Following:<strong>${user.following.length}</strong> </span>
     </div>
 
     <div class ='user-images'>
         
     ${user.urlImages.map(img => {
-        return `<div class='img' style='background:url(${img[0]})no-repeat;width:300px;height:300px;background-size:cover'></div>`
-        // return `<img src='${img[0]}' alt='${img[1]}' style='width:auto; height: 500px'>`
+        return `
+        <div class='box'>
+        <div class='img' style='background:url(${img[0]})no-repeat;width:300px;height:300px;background-size:cover'></div>
+        <p class='photo-description'>${img[1]}</p>
+        </div>
+        
+        `
     }).join('')}
 
         
