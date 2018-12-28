@@ -12,7 +12,7 @@ class User {
         this.password = password;
         this.followers = [];
         this.following = [];
-        this.urlImages = []
+        this.urlImages = [];
     }
 }
 
