@@ -41,8 +41,6 @@ function isEmailValid(email) {
 
 const input = $('.input');
 
-createUser('Mário Prada','m@teste.com', '1', '1224');
-createUser('Cláudia Silva','c@teste.com', '1', '1224');
 
 const signUser = () => {
     input.html(htmlComponents.userSign);
@@ -51,11 +49,21 @@ const signUser = () => {
 
     signBtn.on('click', function () {
         if ($('.sign-status').text() === 'Log In') {
+            //clear fields
+            $('.input-name').val('');
+            $('.input-email').val('');
+            $('.input-password').val('');
+            $('.input-id').val('');
+
             $('.sign-btn').text('Log In');
             $('.sign-status').text('Sign Up');
             $('.name-display').show();
         }
         else {
+            //clear fields
+            $('.input-email').val('');
+            $('.input-password').val('');
+
             $('.sign-btn').text('Sign Up');
             $('.sign-status').text('Log In');
             $('.name-display').hide();
@@ -74,14 +82,14 @@ const signUser = () => {
                     alert('invalid email');
                 }
                 else if (hasUser(email)) {
-                    input.html(htmlComponents.userMsg('Sorry, that email is already taken'));
+                    userMessage('Sorry, that email is already taken');
 
                     $('.ok-btn').on('click', function () {
                         signUser();
                     })
                 }
                 else {
-                    input.html(htmlComponents.userMsg('Thank you for your registration, welcome!'));
+                    userMessage('Thank you for your registration, welcome!');
                     createUser(name, email, password, id);
                     console.log(userDatabase);
 
@@ -102,7 +110,7 @@ const signUser = () => {
                         mailLoggedIn = user.email;
                         isLogin = true;
 
-                        input.html(htmlComponents.userMsg(`Welcome, ${user.name}`));
+                        userMessage(`Welcome, ${user.name}`);
 
                         $('.ok-btn').on('click', function () {
                             page(user);
@@ -119,7 +127,7 @@ const signUser = () => {
                     
                 }
                 else {
-                    input.html(htmlComponents.userMsg('We don\'t have that account'));
+                    userMessage('We don\'t have that account');
 
                     $('.ok-btn').on('click', function () {
                         signUser();
@@ -147,8 +155,12 @@ const page = (user) => {
         let findEmail = $('.email-search').val();
         console.log(findEmail); 
         if(!hasUser(findEmail)) {
-            alert('We have no results for that query');
-            $('.email-search').val('');
+            userMessage('We have no results for that query');
+            
+
+            $('.ok-btn').on('click', function () {
+                page(getUser(mailLoggedIn)); 
+            })
         }
         else {
             let user = getUser(findEmail);
@@ -163,7 +175,6 @@ const page = (user) => {
 
 
     //Publish
-
     $('.publish-btn').on('click', function() {
         let url = $('.url-photo').val();
         let description = $('.user-description').val();
@@ -182,12 +193,12 @@ const page = (user) => {
         let followerUser = getUser(visitPage);
 
         if (followingUser.following.includes(followerUser.email)) {
-            input.html(htmlComponents.userMsg(`YEY! You already follow ${followerUser.name}`));
+            userMessage(`YEY! You already follow ${followerUser.name}`);
         }
         else {
             followingUser.following.push(followerUser.email);
             followerUser.followers.push(followingUser.email);
-            input.html(htmlComponents.userMsg(`You now follow ${followerUser.name}`));
+            userMessage(`You now follow ${followerUser.name}`);
         }
 
         $('.ok-btn').on('click', function () {
@@ -210,6 +221,10 @@ const page = (user) => {
          signUser();
     })
 
+};
+
+const userMessage = (msg) => {
+    input.html(htmlComponents.userMsg(msg));
 }
 
 
