@@ -78,7 +78,6 @@ export function userProfile(user) {
         `
     }).join('')}
 
-        
     </div>
   
     </div>`
