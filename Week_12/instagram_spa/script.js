@@ -39,6 +39,7 @@ function isEmailValid(email) {
     return reg.test(email);
 }
 
+//Grab place where we will inject HTML
 const input = $('.input');
 
 
