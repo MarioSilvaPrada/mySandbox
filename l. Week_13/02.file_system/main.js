@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 setTimeout(() => {
     fs.writeFile('input.txt', 'Hello World', (err) => {
         if (err) {
