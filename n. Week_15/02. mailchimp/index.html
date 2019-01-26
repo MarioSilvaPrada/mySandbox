@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>MailChimp</h1>
+    <form method="POST" action="/adduser">
+        <label for="name" name="name">Your name</label>
+        <input type="text" name="name" id='name'>
+        <label for="email">Your email</label>
+        <input type="email" name="email" id='email'>
+        <input type="submit" value="submit" id='submit'>
+    </form>
+    <div id="data"></div>
+
+</body>
+
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+<script>
+
+    let form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let email = document.getElementById('email').value;
+        let name = document.getElementById('name').value;
+        $.ajax({
+            type: 'POST',
+            url: '/adduser',
+            dataType: "json",
+            data: { merge_fields: { 'FNAME': name }, 'email_address': email, 'status': 'subscribed' },
+            success: (data) => {
+               console.log(data) 
+               document.getElementById('data').innerHTML = data;
+            }
+        })
+    })
+
+
+</script>
+
+
+</html>
