@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Maps Finder</h1>
+    <input type="text" id="input">
+    <button id="btn">Go!</button>
+    <div id="map"></div>
+</body>
+
+<script>
+
+
+    function initMap() {
+        var uluru = { lat: -25.344, lng: 131.036 };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: uluru
+        });
+
+        let btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            let input = document.getElementById('input').value;
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3000/geolocation?location=' + input,
+                success: (data) => {
+                    let dt = JSON.parse(data);
+                    console.log(dt)
+                    let lat = parseFloat(dt[0]['lat']);
+                    let lng = parseFloat(dt[0]['lon']);
+
+                    console.log(lat, lng);
+
+                    map.setCenter({lat: lat, lng: lng});
+                }
+            })
+
+        });
+
+    }
+
+</script>
+
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
+<!-- GOOGLE MAPS  -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDzCf4SxWtoYfKF6H-BPdbdhgNRBwzG7A&callback=initMap">
+</script>
+
+
+</html>
