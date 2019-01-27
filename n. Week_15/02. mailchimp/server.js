@@ -16,21 +16,22 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+// TESTE
+// app.get('/lists', (req, res) => {
 
-app.get('/lists', (req, res) => {
+//     request('https://us20.api.mailchimp.com/3.0/lists', {
+//         'auth': {
+//             'user': 'mario',
+//             'pass': apiKey,
+//             'sendImmediately': true
+//         }
+//     }, function (error, response, body) {
+//         console.log(body);
+//         res.send(body);
+//     });
+// });
 
-    request('https://us20.api.mailchimp.com/3.0/lists', {
-        'auth': {
-            'user': 'mario',
-            'pass': apiKey,
-            'sendImmediately': true
-        }
-    }, function (error, response, body) {
-        console.log(body);
-        res.send(body);
-    });
-});
-
+// Get users list
 app.get('/members', (req, res) => {
     request('https://us20.api.mailchimp.com/3.0/lists/' + listId + '/members', {
         'auth': {
@@ -44,6 +45,7 @@ app.get('/members', (req, res) => {
     })
 })
 
+// POST new user
 app.post('/adduser', (req, res) => {
     console.log(req.body.data);
     request.post('https://us20.api.mailchimp.com/3.0/lists/' + listId + '/members', {

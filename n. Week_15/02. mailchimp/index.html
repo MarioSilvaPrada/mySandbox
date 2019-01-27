@@ -30,6 +30,31 @@
 
     let form = document.querySelector('form');
 
+    let text = '';
+
+    // Get list of users
+    $.ajax({
+        type: 'GET',
+        url: '/members',
+        dataType: "json",
+        success: (data) => {
+            let dt = data['members'];
+
+
+
+            console.log(dt);
+            console.log(dt[0]['email_address']);
+
+            for (let i = 0; i < dt.length; i++) {
+                text += `<p><i>name</i>: <b>${dt[i]['merge_fields']['FNAME']}</b> <i>email</i>: <b>${dt[i]['email_address']}</b></p>`
+            }
+
+            $('#data').html(text)
+        }
+    });
+
+    // POST new user
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -41,11 +66,13 @@
             dataType: "json",
             data: { merge_fields: { 'FNAME': name }, 'email_address': email, 'status': 'subscribed' },
             success: (data) => {
-               console.log(data) 
-               document.getElementById('data').innerHTML = data;
+                console.log(data);
+                text += `<p><i>name</i>: <b>${data['merge_fields']['FNAME']}</b> <i>email</i>: <b>${data['email_address']}</b></p>`
+                $('#data').html(text)
+
             }
         })
-    })
+    });
 
 
 </script>
