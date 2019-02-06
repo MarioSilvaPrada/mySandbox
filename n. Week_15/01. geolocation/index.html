@@ -29,10 +29,9 @@
             center: uluru
         });
 
-        let btn = document.getElementById('btn');
-
-        btn.addEventListener('click', () => {
-            let input = document.getElementById('input').value;
+        $('#btn').on('click', () => {
+            
+            let input = $('#input').val();
 
             $.ajax({
                 type: 'GET',

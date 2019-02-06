@@ -32,6 +32,7 @@ app.get('/', (req, res) => {
 // });
 
 // Get users list
+
 app.get('/members', (req, res) => {
     request('https://us20.api.mailchimp.com/3.0/lists/' + listId + '/members', {
         'auth': {
@@ -42,7 +43,7 @@ app.get('/members', (req, res) => {
     }, (error, response, body) => {
         console.log(body);
         res.send(body);
-    })
+    });
 })
 
 // POST new user
@@ -58,7 +59,7 @@ app.post('/adduser', (req, res) => {
         json: true
     }, function (error, response, body) {
         console.log(body);
-        res.send(body);
+        res.send(JSON.stringify(body));
     });
 });
 

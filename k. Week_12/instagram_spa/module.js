@@ -49,8 +49,6 @@ export function userProfile(user) {
         </div>
     </div>
   
-  
-
     <div class="publish-field">
         <h5>Publish</h5>
         <label for="">Photo URL</label>
